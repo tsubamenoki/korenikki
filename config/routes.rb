@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'homes#top'
-  get 'about' => 'homes#top'
+  get 'about' => 'homes#about'
 
   get 'users/mypage' => 'users#show'
   get 'users/mypage/edit' => 'users#edit'
