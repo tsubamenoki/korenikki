@@ -1,0 +1,26 @@
+<%= render 'layouts/header' %>
+<div class="container">
+  <div class="row">
+    <div class="col-6 text-center mt-5">
+      <%= @post.date %>
+    </div>
+    <div class="col-3 mt-5">
+      <%= link_to "編集する", edit_post_path(@post) %>
+    </div>
+    <div class="col-9 text-center mt-3">
+      <% if @post.image.attached? %>
+        <% @post.image.each do |image| %>
+          <%= image_tag image, size: "500x300" %>
+        <% else %>
+          <%= image_tag 'no_image_yoko_png', size: "500x300" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-9 text-center mt-3">
+      <%= @post.title %>
+    </div>
+    <div class="col-9 text-center mt-3">
+      <%= @post.body %>
+    </div>
+  </div>
+</div>
