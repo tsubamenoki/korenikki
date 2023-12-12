@@ -7,12 +7,19 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to post_path(@post)
+    tags = params[:post][:tag_name].split(',')
+    if @post.save
+      @post.save_tags(tags)
+      redirect_to post_path(@post)
+    else
+      render :new
+    end
   end
-  
+
   def show
     @post = Post.find(params[:id])
+    @tags = @post.tags.pluck(:name).join(',')
+    @post_comment = PostComment.new
   end
 
   def index
@@ -21,12 +28,24 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @tags = @post.tags.pluck(:name).join(',')
   end
 
   def update
+    @post = Post.find(params[:id])
+    tags = params[:post][:tag_name].split(',')
+    if @post.update(post_params)
+      @post.update_tags(tags)
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to posts_path
   end
 
   private

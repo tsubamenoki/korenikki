@@ -1,5 +1,6 @@
 <%= render 'layouts/header' %>
 <div class="container">
+<%= form_with model: [@post, @post_comment] do |f| %>
   <div class="row">
     <div class="col-6 text-center mt-5">
       <%= @post.date %>
@@ -8,19 +9,34 @@
       <%= link_to "編集する", edit_post_path(@post) %>
     </div>
     <div class="col-9 text-center mt-3">
+      <%= @post.title %>
+    </div>
+    <div class="col-9 text-center mt-3">
       <% if @post.image.attached? %>
         <% @post.image.each do |image| %>
           <%= image_tag image, size: "500x300" %>
-        <% else %>
-          <%= image_tag 'no_image_yoko_png', size: "500x300" %>
         <% end %>
+      <% else %>
+        <%= image_tag 'no_image_yoko.jpg', size: "500x300" %>
       <% end %>
-    </div>
-    <div class="col-9 text-center mt-3">
-      <%= @post.title %>
     </div>
     <div class="col-9 text-center mt-3">
       <%= @post.body %>
     </div>
+    <div class="col-9 text-center mt-3">
+      <%= @tags %>
+    </div>
+    <div class="col-9 text-center mt-3">
+    <% if 
+      <p>コメント件数： <%= @post.post_comments.count %></p>
+      <% @post.post_comments.each do |comment| %>
+        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+      <% end %>
+    </div>
+    <div class="col-9 text-center mt-3">
+      <%= f.text_field :comment %>
+      <%= f.submit "送信" %>
+    </div>
+    <% end %>
   </div>
 </div>

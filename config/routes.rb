@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get 'users/mypage/confirm'=>"users#confirm"
   patch 'users/mypage/withdraw'=>"users#withdraw"
 
-  resources :posts
+  resources :posts do
+    resources :post_comments, only: [:create]
+  end
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
