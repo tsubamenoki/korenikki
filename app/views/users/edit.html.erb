@@ -1,0 +1,27 @@
+<%= render "layouts/header" %>
+<div class="container">
+  <%= form_with model: @user, url: users_mypage_path do |f| %>
+  <div class="row">
+    <div class="col-8 text-center mt-3">
+      <%= f.label :名前 %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="col-8 text-center mt-3">
+      <%= f.label :画像 %>
+      <%= f.file_field :image %>
+    </div>
+    <div class="col-8 text-center mt-3">
+      <%= f.label :メールアドレス %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="col-8 text-center mt-3">
+      <%= f.label :パスワード %>
+      <%= f.password_field :encrypted_password %>
+    </div>
+    <div class="col-8 mt-3">
+      <%= f.submit "保存" %>
+      <%= link_to "退会する", users_mypage_confirm_path %>
+    </div>
+  </div>
+  <% end %>
+</div>

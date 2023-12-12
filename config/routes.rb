@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   get 'about' => 'homes#about'
-
   get 'users/mypage' => 'users#show'
   get 'users/mypage/edit' => 'users#edit'
   patch 'users/mypage' => 'users#update'
@@ -12,7 +11,7 @@ Rails.application.routes.draw do
   patch 'users/mypage/withdraw'=>"users#withdraw"
 
   resources :posts do
-    resources :post_comments, only: [:create]
+    resources :post_comments, only: [:create, :destroy]
   end
 
 
