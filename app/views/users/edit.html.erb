@@ -1,6 +1,6 @@
 <%= render "layouts/header" %>
 <div class="container">
-  <%= form_with model: @user, url: users_mypage_path do |f| %>
+  <%= form_with model: @user, url: users_mypage_path, method: :patch do |f| %>
   <div class="row">
     <div class="col-8 text-center mt-3">
       <%= f.label :名前 %>
@@ -16,7 +16,7 @@
     </div>
     <div class="col-8 text-center mt-3">
       <%= f.label :パスワード %>
-      <%= f.password_field :encrypted_password %>
+      <%= f.password_field :password %>
     </div>
     <div class="col-8 mt-3">
       <%= f.submit "保存" %>
