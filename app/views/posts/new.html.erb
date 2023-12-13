@@ -25,8 +25,8 @@
           <td><%= f.text_field :tag_name %></td>
         </tr>
         <tr>
-          <th></th>
-          <td><%= f.submit "投稿" %></td>
+          <td><%= f.submit "投稿", :name => "post" %></td>
+          <td><%= f.submit "一時保存", :name => "draft" %></td>
         </tr>
       </table>
     </div>

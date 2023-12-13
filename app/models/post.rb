@@ -5,6 +5,13 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
+  
+  with_options presence: true, on: :publicize do
+    validates :title
+    validates :body
+    validates :date
+  end
+
 
   #タグの新規投稿メソッド
   def save_tags(tags)

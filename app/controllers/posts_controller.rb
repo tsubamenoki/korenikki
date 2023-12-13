@@ -8,11 +8,20 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     tags = params[:post][:tag_name].split(',')
-    if @post.save
-      @post.save_tags(tags)
-      redirect_to post_path(@post)
+    #投稿ボタン
+    if params[:post]
+      if @post.save(context: :publicize)
+        @post.save_tags(tags)
+        redirect_to post_path(@post)
+      else
+        render :new
+      end
     else
-      render :new
+      #一時保存ボタン
+      if @post.update(is_draft: true)
+        redirect_to post_path
+      else render :new
+      end
     end
   end
 
