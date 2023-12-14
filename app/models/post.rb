@@ -14,6 +14,7 @@ class Post < ApplicationRecord
 
   #投稿画像のメソッド
   def get_post_image
+    #byebug
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image_yoko.jpg')
       image.attached(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')

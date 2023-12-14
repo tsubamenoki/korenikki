@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
 <%= render 'layouts/header' %>
 <%= form_with model: [@post, @post_comment] do |f| %>
   <div class="row justify-content-center">
@@ -16,8 +16,13 @@
         <div class="card-body">
           <% @post.post_images.each do |post_image| %>
           <div class="field mb-3">
-            <%= image_tag post_image.get_post_image, size: "300x300" %>
+            <%= image_tag post_image, size: "300x300" %>
           </div>
+          <% end %>
+          <% unless @post.post_images.attached? %>
+            <div class="field mb-3">
+              <%= image_tag 'no_image_yoko.jpg', size: "300x300" %>
+            </div>
           <% end %>
           <div class="field mb-3">
             <%= @post.body %>
