@@ -1,0 +1,18 @@
+<div class="card text-center">
+  <div class="card-header">
+    <div class="field">
+      <p>プロフィール</p>
+      <%= link_to users_mypage_edit_path do %>
+        <i class="fa-solid fa-user-pen"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="field">
+      <%= image_tag current_user.get_profile_image, size: "50x50", class: "user-icon" %>
+    </div>
+    <div class="field">
+      <%= current_user.name %>
+    </div>
+  </div>
+</div>

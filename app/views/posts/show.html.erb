@@ -1,46 +1,51 @@
-<%= render 'layouts/header' %>
 <div class="container">
+<%= render 'layouts/header' %>
 <%= form_with model: [@post, @post_comment] do |f| %>
-  <div class="row">
-    <div class="col-7 text-center mt-5">
-      <%= @post.date %>
-    </div>
-    <div class="col-1 mt-5">
-      <%= link_to "編集", edit_post_path(@post) %>
-    </div>
-    <div class="col-9 text-center mt-3">
-      <%= @post.title %>
-    </div>
-    <div class="col-9 text-center mt-3">
-      <% if @post.image.attached? %>
-        <% @post.image.each do |image| %>
-          <%= image_tag image, size: "500x300" %>
-        <% end %>
-      <% else %>
-        <%= image_tag 'no_image_yoko.jpg', size: "500x300" %>
-      <% end %>
-    </div>
-    <div class="col-9 text-center mt-3">
-      <%= @post.body %>
-    </div>
-    <div class="col-9 text-center mt-3">
-      <%= @tags %>
-    </div>
-    <div class="col-9 text-center mt-3">
-      <p>コメント件数： <%= @post.post_comments.count %></p>
-      <% @post.post_comments.each do |comment| %>
-      <div class="col-9 text-center mt-1">
-        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-        <%= link_to post_post_comment_path(comment.post, comment), method: :delete do %>
-          <i class="fa-regular fa-trash-can"></i>
-        <% end %>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card text-center">
+        <div class="card-header">
+          <div class="field mb-3">
+            <%= @post.date %>
+            <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary" %>
+          </div>
+          <div class="field mb-3">
+            <%= @post.title %>
+          </div>
+        </div>
+        <div class="card-body">
+          <% @post.post_images.each do |post_image| %>
+          <div class="field mb-3">
+            <%= image_tag post_image.get_post_image, size: "300x300" %>
+          </div>
+          <% end %>
+          <div class="field mb-3">
+            <%= @post.body %>
+          </div>
+          <div class="field mb-3">
+            <%= @tags %>
+          </div>
+          <div class="field mb-3">
+            <p>メモ数： <%= @post.post_comments.count %></p>
+          </div>
+          <% @post.post_comments.each do |comment| %>
+          <div class="field mb-3">
+            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+            <%= link_to post_post_comment_path(comment.post, comment), method: :delete do %>
+              <i class="fa-regular fa-trash-can"></i>
+            <% end %>
+          </div>
+          <% end %>
+          <div class="field mb-3">
+            <%= f.text_field :comment %>
+            <%= f.submit "送信", class: "btn btn-success" %>
+          </div>
+        </div>
       </div>
-      <% end %>
     </div>
-    <div class="col-9 text-center mt-3">
-      <%= f.text_field :comment %>
-      <%= f.submit "送信" %>
+    <div class="col-2 offset-1">
+      <%= render "layouts/sideber" %>
     </div>
-    <% end %>
   </div>
+<% end %>
 </div>

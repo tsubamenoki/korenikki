@@ -1,35 +1,47 @@
+<div class="container mt-5">
 <%= render 'layouts/header' %>
-<div class="container">
 <%= form_with model: @post do |f| %>
-  <div class="row mt-5 justify-content-center">
+  <div class="row justify-content-center">
     <div class="col-8">
-      <table class="table table-borderless">
-        <tr>
-          <th><%= f.label :日付 %></th>
-          <td><%= f.date_field :date %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :タイトル %></th>
-          <td><%= f.text_field :title %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :画像 %></th>
-          <td><%= f.file_field :image, multiple: true %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :本文 %></th>
-          <td><%= f.text_area :body %></td>
-        </tr>
-        <tr>
-          <th><%= f.label :タグ %></th>
-          <td><%= f.text_field :tag_name %></td>
-        </tr>
-        <tr>
-          <th></th>
-          <td><%= f.submit "保存" %></td>
-          <td><%= link_to "削除", post_path(@post), method: :delete %></td>
-        </tr>
-      </table>
+      <div class="card">
+        <div class="card-header">
+          <div class="form-group">
+            <div class="date-field">
+              <%= f.label :日付 %><br>
+              <%= f.date_field :date, autofocus: true, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <div class="field mb-3">
+              <%= f.label :タイトル %><br>
+              <%= f.text_field :title, autofocus: true, class: "form-control" %>
+            </div>
+            <div class="field mb-3">
+              <%= f.label :画像 %><br>
+              <%= f.file_field :post_images, multiple: true, autofocus: true %>
+            </div>
+            <div class="field mb-3">
+              <%= f.label :本文 %><br>
+              <%= f.text_area :body, autofocus: true, class: "form-control" %>
+            </div>
+            <div class="field mb-3">
+              <%= f.label :タグ %><br>
+              <%= f.text_field :tag_name, autofocus: true, class: "form-control" %>
+            </div>
+            <div class="text-center">
+              <div class="btn mt-3">
+                <%= f.submit "保存", class: "btn btn-primary" %>
+                <%= link_to "削除", post_path(@post), class: "btn btn-danger", method: :delete %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-2 offset-1">
+      <%= render "layouts/sideber" %>
     </div>
   </div>
 <% end %>

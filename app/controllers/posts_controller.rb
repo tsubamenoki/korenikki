@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
 
   def new
     @post = Post.new
@@ -8,20 +10,11 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     tags = params[:post][:tag_name].split(',')
-    #投稿ボタン
-    if params[:post]
-      if @post.save(context: :publicize)
-        @post.save_tags(tags)
-        redirect_to post_path(@post)
-      else
-        render :new
-      end
+    if @post.save
+     @post.save_tags(tags)
+      redirect_to post_path(@post)
     else
-      #一時保存ボタン
-      if @post.update(is_draft: true)
-        redirect_to post_path
-      else render :new
-      end
+      render :new
     end
   end
 
@@ -60,6 +53,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :date, image: [])
+    params.require(:post).permit(:title, :body, :date, post_images: [])
   end
 end

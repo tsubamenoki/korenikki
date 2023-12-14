@@ -1,17 +1,25 @@
 class Post < ApplicationRecord
-  has_many_attached :image
+  has_many_attached :post_images
 
   belongs_to :user
   has_many :post_comments, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
-  
+
   with_options presence: true, on: :publicize do
     validates :title
     validates :body
     validates :date
   end
 
+  #投稿画像のメソッド
+  def get_post_image
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image_yoko.jpg')
+      image.attached(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    post_images
+  end
 
   #タグの新規投稿メソッド
   def save_tags(tags)
