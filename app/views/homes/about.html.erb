@@ -1,2 +1,17 @@
-<%= render 'layouts/header' %>
-<h1>ようちそ</h1>
+<div class="container">
+  <%= render 'layouts/header' %>
+  <div class="row">
+    <div class="btn-wrapper col-10 mx-auto">
+        <div class="btn">
+          <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+        </div>
+        <div class="btn">
+          <%= link_to "Log in",new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+        </div>
+        <div class="btn">
+          <%= link_to "Sign Up",new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+        </div>
+      </div>
+
+  </div>
+</div>

@@ -2,8 +2,10 @@
   <div class="card-header">
     <div class="field">
       <p>プロフィール</p>
-      <%= link_to users_mypage_edit_path do %>
-        <i class="fa-solid fa-user-pen"></i>
+      <% if current_user.email != "guest@example.com" %>
+        <%= link_to users_mypage_edit_path do %>
+          <i class="fa-solid fa-user-pen"></i>
+        <% end %>
       <% end %>
     </div>
   </div>
