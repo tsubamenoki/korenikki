@@ -1,55 +1,11 @@
 <div class="container mt-5">
 <%= render 'layouts/header' %>
-<%= form_with model: [@post, @post_comment] do |f| %>
   <div class="row justify-content-center mt-3">
     <div class="col-8">
       <h3 class="text-center">
         New
       </h3>
-      <div class="card text-center">
-        <div class="card-header">
-          <div class="field mb-3">
-            <%= @post.date %>
-            <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary" %>
-          </div>
-          <div class="field mb-3">
-            <%= @post.title %>
-          </div>
-        </div>
-        <div class="card-body">
-          <% @post.post_images.each do |post_image| %>
-          <div class="field mb-3">
-            <%= image_tag post_image, size: "300x300" %>
-          </div>
-          <% end %>
-          <% unless @post.post_images.attached? %>
-            <div class="field mb-3">
-              <%= image_tag 'no_image_yoko.jpg', size: "300x300" %>
-            </div>
-          <% end %>
-          <div class="field mb-3">
-            <%= @post.body %>
-          </div>
-          <div class="field mb-3">
-            <%= @tags %>
-          </div>
-          <div class="field mb-3">
-            <p>メモ数： <%= @post.post_comments.count %></p>
-          </div>
-          <% @post.post_comments.each do |comment| %>
-          <div class="field mb-3">
-            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-            <%= link_to post_post_comment_path(comment.post, comment), method: :delete do %>
-              <i class="fa-regular fa-trash-can"></i>
-            <% end %>
-          </div>
-          <% end %>
-          <div class="field mb-3">
-            <%= f.text_field :comment %>
-            <%= f.submit "送信", class: "btn btn-success" %>
-          </div>
-        </div>
-      </div>
+      <%= render 'posts/a_post', post: @post, tags: @tags, comment: @post_comment, comments: @post_comments %>
       <h3 class="text-center mt-3">
         投稿数の前日比・前週比
       </h3>
@@ -124,11 +80,53 @@
             </tr>
           </tbody>
         </table>
+      <div id="graph">
+        <canvas id="myChart"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+        var ctx = document.getElementById('myChart');
+        var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['6日前','5日前','4日前','3日前','2日前','昨日','今日'],
+            datasets: [{
+                label: 'メモ数',
+                data: [
+                  <%= @post_comments.created_6days_ago.count %>,
+                  <%= @post_comments.created_5days_ago.count %>,
+                  <%= @post_comments.created_4days_ago.count %>,
+                  <%= @post_comments.created_3days_ago.count %>,
+                  <%= @post_comments.created_2days_ago.count %>,
+                  <%= @yesterday_comment.count %>,
+                  <%= @today_comment.count %>],
+                backgroundColor: "rgba(0,0,0,0)",
+                borderColor: "rgba(0,0,255,1)",
+                lineTension: 0.3,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: '7日間のメモ数'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        suggestedMax: 30,
+                        suggestedMin: 0,
+                        stepsize: 5,
+                    },
+                }]
+            }
+        }
+        });
+        </script>
+      </div>
     </div>
     <div class="col-2 offset-1">
       <%= render 'layouts/sideber' %>
     </div>
   </div>
-  <% end %>
 </div>
 
