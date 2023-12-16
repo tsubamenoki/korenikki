@@ -9,17 +9,17 @@
             <th></th>
             <th><%= post.date %></th>
             <th><%= post.title %></th>
-            <th>タグ</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-
           <tr>
+          <% post.post_images.each do |post_image| %>
+            <td><%= image_tag post_image, size: "100x100" %></td>
+          <% end %>
+            <td class="text-center"><%= post.body %></td>
             <td></td>
-            <td><%= post.body %></td>
-            <td><%=  %></td>
           </tr>
-
         </tbody>
       </table>
     <% end %>

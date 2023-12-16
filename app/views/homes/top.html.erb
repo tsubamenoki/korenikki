@@ -1,2 +1,134 @@
+<div class="container mt-5">
 <%= render 'layouts/header' %>
-<h1>ようこそ</h1>
+<%= form_with model: [@post, @post_comment] do |f| %>
+  <div class="row justify-content-center mt-3">
+    <div class="col-8">
+      <h3 class="text-center">
+        New
+      </h3>
+      <div class="card text-center">
+        <div class="card-header">
+          <div class="field mb-3">
+            <%= @post.date %>
+            <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary" %>
+          </div>
+          <div class="field mb-3">
+            <%= @post.title %>
+          </div>
+        </div>
+        <div class="card-body">
+          <% @post.post_images.each do |post_image| %>
+          <div class="field mb-3">
+            <%= image_tag post_image, size: "300x300" %>
+          </div>
+          <% end %>
+          <% unless @post.post_images.attached? %>
+            <div class="field mb-3">
+              <%= image_tag 'no_image_yoko.jpg', size: "300x300" %>
+            </div>
+          <% end %>
+          <div class="field mb-3">
+            <%= @post.body %>
+          </div>
+          <div class="field mb-3">
+            <%= @tags %>
+          </div>
+          <div class="field mb-3">
+            <p>メモ数： <%= @post.post_comments.count %></p>
+          </div>
+          <% @post.post_comments.each do |comment| %>
+          <div class="field mb-3">
+            <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+            <%= link_to post_post_comment_path(comment.post, comment), method: :delete do %>
+              <i class="fa-regular fa-trash-can"></i>
+            <% end %>
+          </div>
+          <% end %>
+          <div class="field mb-3">
+            <%= f.text_field :comment %>
+            <%= f.submit "送信", class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+      <h3 class="text-center mt-3">
+        投稿数の前日比・前週比
+      </h3>
+        <table class="table table-bordered mt-3">
+          <thead>
+            <tr>
+              <th>今日のメモ</th>
+              <th>昨日のメモ</th>
+              <th>前日比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @today_comment.count %></td>
+              <td><%= @yesterday_comment.count %></td>
+            <% if @yesterday_comment.count == 0 %>
+              <td>前日のメモはなし</td>
+            <% else %>
+              <td>
+                <% @the_day_before =  @today_comment.count / @yesterday_comment.count %>
+                <%= (@the_day_before * 100).round %>%
+              </td>
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>今週のメモ数</th>
+              <th>先週のメモ数</th>
+              <th>先週比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @this_week_comment.count %></td>
+              <td><%= @last_week_commnet.count %></td>
+            <% if @last_week_commnet.count == 0 %>
+              <td>先週のメモはなし</td>
+            <% else %>
+              <td>
+                <% @the_week_before =  @this_week_comment.count / @last_week_commnet.count %>
+                <%= (@the_week_before * 100).round %>%
+              </td>
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+      <h4 class="taxt-center">7日間分のメモ数</h4>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>6日前</th>
+              <th>5日前</th>
+              <th>4日前</th>
+              <th>3日前</th>
+              <th>2日前</th>
+              <th>昨日</th>
+              <th>今日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @post_comments.created_6days_ago.count %></td>
+              <td><%= @post_comments.created_5days_ago.count %></td>
+              <td><%= @post_comments.created_4days_ago.count %></td>
+              <td><%= @post_comments.created_3days_ago.count %></td>
+              <td><%= @post_comments.created_2days_ago.count %></td>
+              <td><%= @yesterday_comment.count %></td>
+              <td><%= @today_comment.count %></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-2 offset-1">
+      <%= render 'layouts/sideber' %>
+    </div>
+  </div>
+  <% end %>
+</div>
+
