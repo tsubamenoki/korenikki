@@ -6,6 +6,7 @@ class PostCommentsController < ApplicationController
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.post_id = @post.id
     @post_comment.save
+    @new_post_comment = PostComment.new
     #redirect_to request.referer
   end
 

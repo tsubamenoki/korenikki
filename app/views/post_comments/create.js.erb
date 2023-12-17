@@ -1,4 +1,4 @@
 $("#comment_count").html("<%= j(render 'post_comments/count', post: @post) %>");
 $("#comment_index").html("<%= j(render 'post_comments/index', post: @post) %>");
-$("#comment_form").html("<%= j(render 'post_comments/form', post: @post, post_comment: @post_comment ) %>");
+$("#comment_form").html("<%= j(render 'post_comments/form', post: @post, post_comment: @new_post_comment ) %>");
 $("#post_comment_comment").val('');
