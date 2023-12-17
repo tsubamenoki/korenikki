@@ -5,7 +5,7 @@
       <h3 class="text-center">
         New
       </h3>
-      <%= render 'posts/a_post', post: @post, tags: @tags, comment: @post_comment, comments: @post_comments %>
+      <%= render 'posts/a_post', post: @post, tags: @tags, post_comment: @post_comment %>
       <h3 class="text-center mt-3">
         投稿数の前日比・前週比
       </h3>
@@ -113,8 +113,8 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        suggestedMax: 30,
-                        suggestedMin: 0,
+                        Max: 30,
+                        Min: 0,
                         stepsize: 5,
                     },
                 }]

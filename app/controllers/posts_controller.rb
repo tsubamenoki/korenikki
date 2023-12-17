@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tags = params[:post][:tag_name].split(',')
+    tags = params[:post][:tag_id].split(',')
     if @post.save
      @post.save_tags(tags)
       redirect_to post_path(@post)
@@ -26,6 +26,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @tags = Tag.all
   end
 
   def edit
@@ -35,7 +36,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    tags = params[:post][:tag_name].split(',')
+    tags = params[:post][:tag_id].split(',')
     if @post.update(post_params)
       @post.update_tags(tags)
       redirect_to post_path(@post)

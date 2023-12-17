@@ -1,4 +1,4 @@
-<%= form_with model: [@post, @post_comment] do |f| %>
+
 <div class="card text-center">
   <div class="card-header">
     <div class="field mb-3">
@@ -26,21 +26,14 @@
     <div class="field mb-3">
       <%= tags %>
     </div>
-    <div class="field mb-3">
-      <p>メモ数： <%= post.post_comments.count %></p>
+    <div id="comment_count" class="mb-3">
+      <%= render 'post_comments/count', post: post %>
     </div>
-    <% post.post_comments.each do |comment| %>
-    <div class="field mb-3">
-      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <%= link_to post_post_comment_path(comment.post, comment), method: :delete do %>
-        <i class="fa-regular fa-trash-can"></i>
-      <% end %>
+    <div id="comment_form" class="mb-3">
+      <%= render 'post_comments/form', post: post, post_comment: post_comment %>
     </div>
-    <% end %>
-    <div class="field mb-3">
-      <%= f.text_field :comment %>
-      <%= f.submit "送信", class: "btn btn-success" %>
+    <div id="comment_index" class="mb-3">
+      <%= render 'post_comments/index', post: post %>
     </div>
   </div>
-<% end %>
 </div>
