@@ -21,12 +21,13 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @tags = @post.tags.pluck(:name).join(',')
+    @post_tags = @post.tags
     @post_comment = PostComment.new
   end
 
   def index
     @posts = Post.all
-    @tags = Tag.all
+    @tag_list = Tag.all
   end
 
   def edit
@@ -49,6 +50,11 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     post.destroy
     redirect_to posts_path
+  end
+
+  def search_tag
+    @tag = Tag.find(params[:tag_id])
+    @posts = @tag.posts
   end
 
   private

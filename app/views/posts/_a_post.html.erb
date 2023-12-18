@@ -23,9 +23,12 @@
     <div class="field mb-3">
       <%= post.body %>
     </div>
+    <% post_tags.each do |tag| %>
     <div class="field mb-3">
-      <%= tags %>
+      <i class="fa-solid fa-tag"></i>
+        <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
     </div>
+    <% end %>
     <div id="comment_count" class="mb-3">
       <%= render 'post_comments/count', post: post %>
     </div>
