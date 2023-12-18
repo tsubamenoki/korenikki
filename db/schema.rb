@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 2023_12_11_022859) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_tag_relationships_on_post_id"
+    t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -99,4 +101,6 @@ ActiveRecord::Schema.define(version: 2023_12_11_022859) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "tag_relationships", "posts"
+  add_foreign_key "tag_relationships", "tags"
 end

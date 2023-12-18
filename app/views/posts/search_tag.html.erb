@@ -2,7 +2,35 @@
 <%= render 'layouts/header' %>
   <div class="row justify-content-center">
     <div class="col-8">
-      <h2><%= @tag.name </h2>
+      <h2><%= @tag.name %>の投稿</h2>
+      <% @posts.each do |post| %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th><%= post.date %></th>
+            <th><%= link_to post.title, post_path(post) %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          <% post.post_images.each do |post_image| %>
+            <td><%= image_tag post_image, size: "100x100" %></td>
+          <% end %>
+          <% unless post.post_images.attached? %>
+            <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
+          <% end %>
+            <td class="text-center"><%= post.body %></td>
+          <% post.tags.each do |tag| %>
+            <td><i class="fa-solid fa-tag"></i>
+            <%= link_to tag.name,search_tag_path(post_tag_id: tag.id) %>
+            <%#= "(#{tag.post.count})" %></td>
+          <% end %>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
     </div>
   </div>
 </div>

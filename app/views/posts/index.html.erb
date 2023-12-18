@@ -21,6 +21,11 @@
             <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
           <% end %>
             <td class="text-center"><%= post.body %></td>
+          <% post.tags.each do |tag| %>
+            <td><i class="fa-solid fa-tag"></i>
+            <%= link_to tag.name,search_tag_path(post_tag_id: tag.id) %>
+            <%#= "(#{tag.post.count})" %></td>
+          <% end %>
           </tr>
         </tbody>
       </table>
