@@ -1,0 +1,105 @@
+<div class="conteiner mt-5">
+<%= render 'layouts/header' %>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <table class="table table-hover">
+        <% if @range == "日付" %>
+        <h3>"<%= @word %>"の検索結果(日付)</h3>
+          <thead>
+            <% @date.each do |date_result| %>
+            <tr>
+              <th></th>
+              <th><%= date_result.date %></th>
+              <th><%= date_result.title %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <% date_result.post_images.each do |post_image| %>
+              <td><%= image_tag post_image, size: "100x100" %></td>
+            <% end %>
+            <% unless date_result.post_images.attached? %>
+              <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
+            <% end %>
+              <td class="taxt-center"><%= date_result.body %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        <% elsif @range == "タイトル" %>
+        <h3>"<%= @word %>"の検索結果(タイトル)</h3>
+          <thead>
+            <% @title.each do |title_result| %>
+            <tr>
+              <th></th>
+              <th><%= title_result.date %></th>
+              <th><%= title_result.title %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <% title_result.post_images.each do |post_image| %>
+              <td><%= image_tag post_image, size: "100x100" %></td>
+            <% end %>
+            <% unless title_result.post_images.attached? %>
+              <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
+            <% end %>
+              <td class="taxt-center"><%= title_result.body %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        <% elsif @range == "本文" %>
+        <h3>"<%= @word %>"の検索結果(本文)</h3>
+          <thead>
+            <% @body.each do |body_result| %>
+            <tr>
+              <th></th>
+              <th><%= body_result.date %></th>
+              <th><%= body_result.title %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <% body_result.post_images.each do |post_image| %>
+              <td><%= image_tag post_image, size: "100x100" %></td>
+            <% end %>
+            <% unless body_result.post_images.attached? %>
+              <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
+            <% end %>
+              <td class="taxt-center"><%= body_result.body %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        <% else %>
+        <h3>"<%= @word %>"の検索結果(タグ)</h3>
+          <thead>
+            <% @tag.each do |tag_result| %>
+            <tr>
+              <th></th>
+              <th><%= tag_result.date %></th>
+              <th><%= tag_result.title %></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <% tag_result.post_images.each do |post_image| %>
+              <td><%= image_tag post_image, size: "100x100" %></td>
+            <% end %>
+            <% unless tag_result.post_images.attached? %>
+              <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
+            <% end %>
+              <td class="taxt-center"><%= tag_result.body %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-2 offset-1">
+      <%= render "layouts/sideber" %>
+    </div>
+  </div>
+</div>

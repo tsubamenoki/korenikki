@@ -17,6 +17,9 @@
           <% post.post_images.each do |post_image| %>
             <td><%= image_tag post_image, size: "100x100" %></td>
           <% end %>
+          <% unless post.post_images.attached? %>
+            <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
+          <% end %>
             <td class="text-center"><%= post.body %></td>
             <td></td>
           </tr>
