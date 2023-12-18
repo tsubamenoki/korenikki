@@ -23,8 +23,8 @@
             <td class="text-center"><%= post.body %></td>
           <% post.tags.each do |tag| %>
             <td><i class="fa-solid fa-tag"></i>
-            <%= link_to tag.name,search_tag_path(post_tag_id: tag.id) %>
-            <%#= "(#{tag.post.count})" %></td>
+            <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+            <%= "(#{tag.posts.count})" %></td>
           <% end %>
           </tr>
         </tbody>

@@ -11,5 +11,6 @@ class HomesController < ApplicationController
     @last_week_commnet = @post_comments.created_last_week
     @tags = @post.tags.pluck(:name).join(',')
     @post_tags = @post.tags
+    @posts = Post.all
   end
 end

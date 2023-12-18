@@ -19,9 +19,19 @@
   </div>
   </div>
 <%= form_with url: search_path, method: :get do  |f| %>
-  <div class="search_form mt-3">
+  <div class="search_form mt-5">
     <%= f.text_field :word %>
     <%= f.select :range, options_for_select([['日付'],['タイトル'],['本文'],['タグ']]) %>
     <%= f.submit '検索', class: "btn-sm btn-primary" %>
   </div>
+  <div class="calendar mt-5">
+      <%= month_calendar posts: @posts do |date, posts| %>
+        <%= date.day %>
+        <% posts.each do |post| %>
+        <% if post.present? %>
+          <%= link_to "🐜", posts_path(post) %>
+        <% end %>
+        <% end %>
+      <% end %>
+    </div>
 <% end %>

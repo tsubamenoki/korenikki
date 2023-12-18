@@ -85,12 +85,12 @@
           </thead>
           <tbody>
             <tr>
-            <% tag_result.post_images.each do |post_image| %>
-              <td><%= image_tag post_image, size: "100x100" %></td>
-            <% end %>
-            <% unless tag_result.post_images.attached? %>
+            <%# tag_result.post_images.each do |post_image| %>
+              <td><%#= image_tag post_image, size: "100x100" %></td>
+            <%# end %>
+            <%# unless tag_result.post_images.attached? %>
               <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
-            <% end %>
+            <%# end %>
               <td class="taxt-center"><%= tag_result.body %></td>
             </tr>
           <% end %>
