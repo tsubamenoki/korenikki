@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_match_login_user, only: [:show, :edit, :update, :destroy]
 
 
   def new
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = current_user.posts
     @tag_list = Tag.all
   end
 
@@ -61,5 +62,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :date, post_images: [])
+  end
+
+  def is_match_login_user
+    post = Post.find(params[:id])
+    unless post.user.id == current_user.id
+      redirect_to root_path
+    end
   end
 end

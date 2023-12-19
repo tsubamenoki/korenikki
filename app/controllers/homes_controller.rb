@@ -2,7 +2,7 @@ class HomesController < ApplicationController
   before_action :authenticate_user!, except: [:about]
 
   def top
-    @post = Post.last
+    @post = current_user.posts.last
     @post_comment = PostComment.new
     @post_comments = PostComment.all
     @today_comment = @post_comments.created_today

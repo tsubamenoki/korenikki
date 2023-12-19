@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_guest_user
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.email == "guest@example.com"
       redirect_to root_path , notice: "ゲストユーザーはプロフィール画面に遷移できません。"
     end
