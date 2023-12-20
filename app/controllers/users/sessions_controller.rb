@@ -26,8 +26,6 @@ class Users::SessionsController < Devise::SessionsController
     root_path
   end
 
-  def
-
   def guest_sign_in
     user = User.guest
     sign_in user
