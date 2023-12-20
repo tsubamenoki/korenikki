@@ -7,6 +7,8 @@ class User < ApplicationRecord
          has_many :posts, dependent: :destroy
          has_many :post_comments, dependent: :destroy
 
+         validates :name, presence: true
+
          has_one_attached :profile_image
 
       #ユーザーアイコンのメソッド
@@ -17,10 +19,10 @@ class User < ApplicationRecord
           end
           profile_image
         end
-        
+
         #ゲストログイン機能のメソッド
         GUEST_USER_EMAIL = "guest@example.com"
-        
+
           def self.guest
             find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
               user.password = SecureRandom.urlsafe_base64

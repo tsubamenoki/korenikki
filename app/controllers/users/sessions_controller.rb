@@ -22,6 +22,12 @@ class Users::SessionsController < Devise::SessionsController
   #byebug
   # end
 
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
+  def
+
   def guest_sign_in
     user = User.guest
     sign_in user

@@ -23,6 +23,11 @@
               <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
             <% end %>
               <td class="taxt-center"><%= date_result.body %></td>
+            <% date_result.tags.first(3).each do |tag| %>
+              <td><i class="fa-solid fa-tag"></i>
+              <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+              <%= "(#{tag.posts.count})" %></td>
+            <% end %>
             </tr>
           <% end %>
           </tbody>
@@ -46,6 +51,11 @@
               <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
             <% end %>
               <td class="taxt-center"><%= title_result.body %></td>
+            <% title_result.tags.first(3).each do |tag| %>
+              <td><i class="fa-solid fa-tag"></i>
+              <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+              <%= "(#{tag.posts.count})" %></td>
+            <% end %>
             </tr>
           <% end %>
           </tbody>
@@ -69,6 +79,11 @@
               <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
             <% end %>
               <td class="taxt-center"><%= body_result.body %></td>
+            <% body_result.tags.first(3).each do |tag| %>
+              <td><i class="fa-solid fa-tag"></i>
+              <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+              <%= "(#{tag.posts.count})" %></td>
+            <% end %>
             </tr>
           <% end %>
           </tbody>
@@ -78,8 +93,8 @@
             <% @tag.each do |tag_result| %>
             <tr>
               <th></th>
-              <th><%= tag_result.date %></th>
-              <th><%= tag_result.title %></th>
+              <th><%= tag_result.posts.date %></th>
+              <th><%= tag_result.posts.title %></th>
               <th></th>
             </tr>
           </thead>

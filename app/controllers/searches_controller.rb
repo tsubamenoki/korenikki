@@ -6,13 +6,13 @@ class SearchesController < ApplicationController
     @word = params[:word]
 
     if @range == "日付"
-      @date = Post.where("date like?","%#{@word}%")
+      @date = current_user.posts.where("date like?","%#{@word}%")
     elsif @range == "タイトル"
-      @title = Post.where("title like?","%#{@word}%")
+      @title = current_user.posts.where("title like?","%#{@word}%")
     elsif @range == "本文"
-      @body = Post.where("body like?","%#{@word}%")
+      @body = current_user.posts.where("body like?","%#{@word}%")
     else
-      @tag = Tag.where("name like?","%#{@word}%")
+      @tag = current_user.tags.where("name like?","%#{@word}%")
     end
   end
 end
