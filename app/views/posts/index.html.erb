@@ -14,7 +14,7 @@
         </thead>
         <tbody>
           <tr>
-          <% post.post_images.each do |post_image| %>
+          <% post.post_images.first(1).each do |post_image| %>
             <td><%= image_tag post_image, size: "100x100" %></td>
           <% end %>
           <% unless post.post_images.attached? %>

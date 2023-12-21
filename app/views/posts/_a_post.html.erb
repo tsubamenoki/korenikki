@@ -10,11 +10,16 @@
     </div>
   </div>
   <div class="card-body">
-    <% post.post_images.each do |post_image| %>
-    <div class="field mb-3">
-      <%= image_tag post_image, size: "300x300" %>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <% post.post_images.each do |post_image| %>
+          <%= image_tag post_image, class: "swiper-slide", size: "300x300" %>
+        <% end %>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
     </div>
-    <% end %>
     <% unless post.post_images.attached? %>
       <div class="field mb-3">
         <%= image_tag 'no_image_yoko.jpg', size: "300x300" %>
@@ -41,4 +46,16 @@
       <%= render 'post_comments/index', post: post %>
     </div>
   </div>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+  </script>
 </div>

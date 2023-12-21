@@ -16,7 +16,7 @@
           </thead>
           <tbody>
             <tr>
-            <% date_result.post_images.each do |post_image| %>
+            <% date_result.post_images.first(1).each do |post_image| %>
               <td><%= image_tag post_image, size: "100x100" %></td>
             <% end %>
             <% unless date_result.post_images.attached? %>
@@ -44,7 +44,7 @@
           </thead>
           <tbody>
             <tr>
-            <% title_result.post_images.each do |post_image| %>
+            <% title_result.post_images.first(1).each do |post_image| %>
               <td><%= image_tag post_image, size: "100x100" %></td>
             <% end %>
             <% unless title_result.post_images.attached? %>
@@ -72,7 +72,7 @@
           </thead>
           <tbody>
             <tr>
-            <% body_result.post_images.each do |post_image| %>
+            <% body_result.post_images.first(1).each do |post_image| %>
               <td><%= image_tag post_image, size: "100x100" %></td>
             <% end %>
             <% unless body_result.post_images.attached? %>
