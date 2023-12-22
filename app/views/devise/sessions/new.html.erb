@@ -3,6 +3,7 @@
   <%= form_with model: @user, url: user_session_path do |f| %>
   <div class="row">
     <div class="col-6 offset-3">
+      <%= render 'layouts/flash_message' %>
       <div class="card text-center">
         <div class="card-header">
           ログイン

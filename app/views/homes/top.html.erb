@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container-ml mt-5">
 <%= render 'layouts/header' %>
   <div class="row justify-content-center mt-3">
   <% if @post.present? %>
@@ -133,6 +133,7 @@
     </div>
   <% end %>
     <div class="col-3 offset-1">
+      <%= render 'layouts/flash_message' %>
       <%= render 'layouts/sideber' %>
     </div>
   </div>
