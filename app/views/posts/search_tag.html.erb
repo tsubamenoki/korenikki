@@ -1,36 +1,11 @@
 <div class="container mt-5">
-<%= render 'layouts/header' %>
   <div class="row justify-content-center">
-    <div class="col-8">
-      <h2><%= @tag.name %>の投稿</h2>
-      <% @posts.each do |post| %>
-      <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th><%= post.date %></th>
-            <th><%= link_to post.title, post_path(post) %></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          <% post.post_images.each do |post_image| %>
-            <td><%= image_tag post_image, size: "100x100" %></td>
-          <% end %>
-          <% unless post.post_images.attached? %>
-            <td><%= image_tag 'no_image_yoko.jpg', size: "100x100" %></td>
-          <% end %>
-            <td class="text-center"><%= post.body %></td>
-          <% post.tags.first(3).each do |tag| %>
-            <td><i class="fa-solid fa-tag"></i>
-            <%= link_to tag.name,search_tag_path(post_tag_id: tag.id) %>
-            <%= "(#{tag.posts.count})" %></td>
-          <% end %>
-          </tr>
-        </tbody>
-      </table>
-    <% end %>
+    <div class="col-7 mt-5">
+      <h2 class="text-center"><%= @tag.name %>の投稿</h2>
+      <%= render "ichiran", obj: @posts %>
+    </div>
+    <div class="col-2 offset-1">
+      <%= render "layouts/sideber" %>
     </div>
   </div>
 </div>

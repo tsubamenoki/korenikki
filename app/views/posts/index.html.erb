@@ -1,41 +1,9 @@
 <div class="container mt-5">
-<%= render 'layouts/header' %>
   <div class="row justify-content-center">
     <% if @posts.present? %>
     <div class="col-7">
       <%= render 'layouts/flash_message' %>
-      <% @posts.each do |post| %>
-      <div class="post-item-list">
-        <div class="post-item">
-          <div class="post-image">
-            <% post.post_images.first(1).each do |post_image| %>
-              <%= image_tag post_image, size: "160x160" %>
-            <% end %>
-            <% unless post.post_images.attached? %>
-              <%= image_tag 'no_image_yoko.jpg', size: "160x160" %>
-            <% end %>
-          </div>
-          <section class="post-text">
-            <p class="post-title">
-              <%= link_to post.title, post_path(post), class: "text-secondary" %>
-            </p>
-            <p class="post-body">
-              <%= post.body.truncate(20) %>
-            </p>
-            <% post.tags.first(3).each do |tag| %>
-            <p class="post-tags">
-              <i class="fa-solid fa-tag"></i>
-              <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
-              <%= "(#{tag.posts.count})" %>
-            </p>
-            <% end %>
-            <p class="post-date">
-              <%= post.date %>
-            </p>
-          </section>
-        </div>
-      </div>
-    <% end %>
+      <%= render 'ichiran', obj: @posts %>
     </div>
     <% else %>
     <div class="col-7 mt-5">
