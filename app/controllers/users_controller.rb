@@ -10,8 +10,10 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
+      flash[:success] = "変更しました"
       redirect_to root_path
     else
+      flash.now[:danger] = "変更に失敗しました"
       render :edit
     end
   end

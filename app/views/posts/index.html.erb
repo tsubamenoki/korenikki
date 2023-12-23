@@ -2,6 +2,7 @@
 <%= render 'layouts/header' %>
   <div class="row justify-content-center">
     <div class="col-8">
+      <%= render 'layouts/flash_message' %>
       <% @posts.each do |post| %>
       <table class="table">
         <thead>

@@ -37,10 +37,10 @@
     <div id="comment_count" class="mb-3">
       <%= render 'post_comments/count', post: post %>
     </div>
-    <div id="comment_error" class="mb-3">
+    <div id="comment_message">
+      <%= render 'layouts/flash_message' %>
     </div>
-    <div id="comment_form" class="mb-3">
-      <%= render 'post_comments/form', post: post, post_comment: post_comment %>
+    <div id="comment_error" class="mb-3">
     </div>
     <div id="comment_index" class="mb-3">
       <%= render 'post_comments/index', post: post %>

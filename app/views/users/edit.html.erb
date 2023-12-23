@@ -3,6 +3,7 @@
 <%= form_with model: @user, url: users_mypage_path, method: :patch do |f| %>
   <div class="row justify-content-center">
     <div class="col-8">
+      <%= render 'layouts/flash_message' %>
       <%= render 'layouts/error', obj: @user %>
       <div class="card text-center">
         <div class="card-body">
