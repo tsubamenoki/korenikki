@@ -1,19 +1,15 @@
 <div class="container mt-5">
-  <%= render 'layouts/header' %>
-  <div class="row">
-    <div class="btn-wrapper col-8 ">
-        <div class="btn">
-          <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-        </div>
-        <div class="btn">
-          <%= link_to "Log in",new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-        </div>
-        <div class="btn">
-          <%= link_to "Sign Up",new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
-        </div>
-      </div>
+  <div class="row justify-content-center">
+    <div class="col-7 mt-5">
+      <h1 class="text-center">Aboutページ</h1>
+      <h3 class="text-center mt-5">
+        これにっきへようこそ！<br>
+        このサイトでは自分の投稿を人に見られることはありません！<br>
+        あなたが見つけた「これ」を忘れないようにこれ日記に記していってください！
+      </h3>
+    </div>
     <div class="col-3 offset-1">
-      <%#= render 'layouts/sideber' %>
+      <%= render 'layouts/sideber' %>
     </div>
   </div>
 </div>

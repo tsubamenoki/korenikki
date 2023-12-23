@@ -2,11 +2,11 @@
 <div class="card text-center">
   <div class="card-header">
     <div class="field mb-3">
-      <%= post.date %>
       <%= link_to "編集", edit_post_path(post), class: "btn btn-primary" %>
+      <h3><%= post.date %></h3>
     </div>
     <div class="field mb-3">
-      <%= post.title %>
+      <h2><%= post.title %></h2>
     </div>
   </div>
   <div class="card-body">
@@ -21,26 +21,26 @@
       <div class="swiper-button-next"></div>
     </div>
     <% unless post.post_images.attached? %>
-      <div class="field mb-3">
+      <div class="field mb-5">
         <%= image_tag 'no_image_yoko.jpg', size: "300x300" %>
       </div>
     <% end %>
-    <div class="field mb-3">
-      <%= post.body %>
+    <div class="field my-5">
+      <h4><%= post.body %></h4>
     </div>
     <% post_tags.each do |tag| %>
     <div class="field mb-3">
       <i class="fa-solid fa-tag"></i>
-        <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
+        <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
     </div>
     <% end %>
     <div id="comment_count" class="mb-3">
       <%= render 'post_comments/count', post: post %>
     </div>
-    <div id="comment_message">
-      <%= render 'layouts/flash_message' %>
-    </div>
     <div id="comment_error" class="mb-3">
+    </div>
+    <div id="comment_form" class="mb-3">
+      <%= render 'post_comments/form', post: post, post_comment: post_comment %>
     </div>
     <div id="comment_index" class="mb-3">
       <%= render 'post_comments/index', post: post %>

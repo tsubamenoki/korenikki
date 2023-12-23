@@ -1,37 +1,71 @@
-<div class="card text-center">
-  <div class="card-header">
-    <div class="field">
-      <p>プロフィール</p>
-      <% if current_user.email != "guest@example.com" %>
-        <%= link_to users_mypage_edit_path do %>
-          <i class="fa-solid fa-user-pen"></i>
+<div class="text-center">
+  <%= link_to  root_path do %>
+    <%= image_tag "korenikki.png", size: "200x200" %>
+  <% end %>
+</div>
+
+<% if user_signed_in? %>
+  <ul class="nav flex-column">
+    <li class="nav-item mb-2 text-center">
+      <%= link_to "About", about_path, class: 'nav-link text-secondary' %>
+    </li>
+    <li class="nav-item mb-2 text-center">
+      <%= link_to "新規投稿", new_post_path, class: 'nav-link text-secondary' %>
+    </li>
+    <li class="nav-item mb-2 text-center">
+      <%= link_to "投稿一覧", posts_path, class: 'nav-link text-secondary' %>
+    </li>
+     <li class="nav-item mb-2 text-center">
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: 'nav-link text-secondary'%>
+    </li>
+  </ul>
+  <div class="card text-center">
+    <div class="card-header">
+      <div class="field">
+        <p>プロフィール</p>
+        <% if current_user.email != "guest@example.com" %>
+          <%= link_to users_mypage_edit_path do %>
+            <i class="fa-solid fa-user-pen"></i>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
-  <div class="card-body">
-    <div class="field">
-      <%= image_tag current_user.get_profile_image, size: "50x50", class: "user-icon" %>
+    <div class="card-body">
+      <div class="field">
+        <%= image_tag current_user.get_profile_image, size: "50x50", class: "user-icon" %>
+      </div>
+      <div class="field">
+        <%= current_user.name %>
+      </div>
     </div>
-    <div class="field">
-      <%= current_user.name %>
     </div>
-  </div>
-  </div>
-<%= form_with url: search_path, method: :get do  |f| %>
-  <div class="search_form mt-5">
-    <%= f.text_field :word %>
-    <%= f.select :range, options_for_select([['日付'],['タイトル'],['本文'],['タグ']]) %>
-    <%= f.submit '検索', class: "btn-sm btn-primary" %>
-  </div>
-  <div class="calendar mt-5">
-      <%= month_calendar posts: @posts do |date, posts| %>
-        <%= date.day %>
-        <% posts.each do |post| %>
-        <% if post.present? %>
-          <%= link_to "🐜", posts_path(post) %>
+  <%= form_with url: search_path, method: :get do  |f| %>
+    <div class="search_form mt-5">
+      <%= f.text_field :word %>
+      <%= f.select :range, options_for_select([['日付'],['タイトル'],['本文'],['タグ']]) %>
+      <%= f.submit '検索', class: "btn-sm btn-primary" %>
+    </div>
+    <div class="calendar mt-5">
+        <%= month_calendar posts: @posts do |date, posts| %>
+          <%= date.day %>
+          <% posts.each do |post| %>
+          <% if post.present? %>
+            <%= link_to "🐜", posts_path(post) %>
+          <% end %>
+          <% end %>
         <% end %>
-        <% end %>
-      <% end %>
-    </div>
+      </div>
+  <% end %>
+<% else %>
+  <ul class="nav flex-column">
+    <li class="nav-item mb-2 text-center">
+      <%= link_to "About", about_path, class: 'nav-link text-secondary' %>
+    </li>
+    <li class="nav-item mb-2 text-center">
+      <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-secondary' %>
+    </li>
+    <li class="nav-item mb-2 text-center">
+      <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-secondary' %>
+    </li>
+  </ul>
 <% end %>

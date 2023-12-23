@@ -3,7 +3,7 @@ class PostComment < ApplicationRecord
   belongs_to :user
   belongs_to :post
 
-  validates :comment, presence: true
+  validates :comment, presence: true, length: { maximum: 30 }
 
   #メモ数算出
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }

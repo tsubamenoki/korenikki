@@ -6,8 +6,8 @@ class Post < ApplicationRecord
   has_many :tag_relationships, dependent: :destroy
   has_many :tags, through: :tag_relationships
 
-    validates :title, presence: true
-    validates :body, presence: true
+    validates :title, presence: true, length: { maximum: 20 }
+    validates :body, presence: true, length: { maximum: 500 }
     validates :date, presence: true
 
   #投稿画像のメソッド

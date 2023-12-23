@@ -1,6 +1,6 @@
 <% post.post_comments.each do |comment| %>
   <div class="mb-2">
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <span class="mr-5"><%= comment.created_at.strftime('%Y/%m/%d') %></span><%= comment.comment %>
     <%= link_to post_post_comment_path(comment.post, comment), method: :delete, remote: true do %>
       <i class="fa-regular fa-trash-can"></i>
     <% end %>
