@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'homes#about'
-  get 'top' => 'homes#top', as: 'top'
+  get 'top' => 'homes#top'
   get 'users/mypage' => 'users#show'
   get 'users/mypage/edit' => 'users#edit'
   patch 'users/mypage' => 'users#update'
