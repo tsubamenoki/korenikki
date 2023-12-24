@@ -1,9 +1,9 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <div class="col-lg-2">
-      <%= render "layouts/sideber" %>
+    <div class="col-lg-3">
+      <%= render "layouts/sideber", tag_lists: @tag_lists %>
     </div>
-    <div class="col-lg-7 mt-5 offset-1">
+    <div class="col-lg-8 mt-5 offset-1">
       <% if @range == "日付" %>
       <h3 class="text-center">"<%= @word %>"の検索結果(日付)</h3>
         <% @date.each do |date_result| %>

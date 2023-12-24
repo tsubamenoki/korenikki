@@ -13,6 +13,8 @@ class HomesController < ApplicationController
       @tags = @post.tags.pluck(:name).join(',')
       @post_tags = @post.tags
       @posts = Post.all
+      tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+      @tag_lists = Tag.where(id: tag_ids)
     end
   end
 end

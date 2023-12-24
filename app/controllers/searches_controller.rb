@@ -16,5 +16,8 @@ class SearchesController < ApplicationController
       post_ids = TagRelationship.where(tag_id: Tag.where("name like?","%#{@word}%")).pluck(:post_id)
       @tag = @post.where(id: post_ids).page(params[:page])
     end
+
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 end

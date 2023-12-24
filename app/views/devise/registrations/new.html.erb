@@ -1,12 +1,12 @@
 <div class="container mt-5">
 <%= render "layouts/header" %>
   <%= form_with model: @user, url: user_registration_path do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
   <div class="row justify-content-center">
     <div class="col-lg-3">
       <%= render "layouts/sideber" %>
     </div>
     <div class="col-lg-7 mt-5 offset-1">
+      <%= render "devise/shared/error_messages", resource: resource %>
       <div class="card text-center">
         <div class="card-header">
           新規登録

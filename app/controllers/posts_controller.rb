@@ -5,6 +5,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 
   def create
@@ -26,16 +28,22 @@ class PostsController < ApplicationController
     @tags = @post.tags.pluck(:name).join(',')
     @post_tags = @post.tags
     @post_comment = PostComment.new
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 
   def index
     @posts = current_user.posts.page(params[:page])
     @tag_list = Tag.all
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 
   def edit
     @post = Post.find(params[:id])
     @tags = @post.tags.pluck(:name).join(',')
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 
   def update
@@ -60,7 +68,9 @@ class PostsController < ApplicationController
 
   def search_tag
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.page(params[:page])
+    @posts = @tag.posts.where(user_id: current_user.id).page(params[:page])
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 
   private

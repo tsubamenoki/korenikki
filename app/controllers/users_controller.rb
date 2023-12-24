@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 
   def update
@@ -20,6 +22,8 @@ class UsersController < ApplicationController
 
   def confirm
     @user = current_user
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 
   def withdraw
@@ -27,6 +31,8 @@ class UsersController < ApplicationController
     @user.update(is_active: false)
     reset_session
     redirect_to root_path
+    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+    @tag_lists = Tag.where(id: tag_ids)
   end
 
   private

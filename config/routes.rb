@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
 
-  root to: 'homes#top'
-  get 'about' => 'homes#about'
+  root to: 'homes#about'
+  get 'top' => 'homes#top'
   get 'users/mypage' => 'users#show'
   get 'users/mypage/edit' => 'users#edit'
   patch 'users/mypage' => 'users#update'

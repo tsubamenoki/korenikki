@@ -1,12 +1,12 @@
 <div class="navbar-brand">
-  <%= link_to  root_path do %>
+  <%= link_to top_path do %>
     <%= image_tag "korenikki.png", size: "200x200" %>
   <% end %>
 </div>
 <% if user_signed_in? %>
   <ul class="nav flex-column">
     <li class="nav-item mb-2 text-center">
-      <%= link_to "About", about_path, class: 'nav-link text-secondary' %>
+      <%= link_to "About", root_path, class: 'nav-link text-secondary' %>
     </li>
     <li class="nav-item mb-2 text-center">
       <%= link_to "新規投稿", new_post_path, class: 'nav-link text-secondary' %>
@@ -44,6 +44,15 @@
       <%= f.select :range, options_for_select([['日付'],['タイトル'],['本文'],['タグ']]) %>
       <%= f.submit '検索', class: "btn-sm btn-primary" %>
     </div>
+<% if tag_lists.present? %>
+  <% tag_lists.each do |tag| %>
+    <div class="tag_lists">
+      <i class="fa-solid fa-tag"></i>
+      <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
+      <%= "(#{tag.posts.count})" %>
+    </div>
+  <% end %>
+<% end %>
     <div class="calendar mt-5">
         <%= month_calendar posts: @posts do |date, posts| %>
           <%= date.day %>
@@ -58,7 +67,7 @@
 <% else %>
   <ul class="nav flex-column">
     <li class="nav-item mb-2 text-center">
-      <%= link_to "About", about_path, class: 'nav-link text-secondary' %>
+      <%= link_to "About", root_path, class: 'nav-link text-secondary' %>
     </li>
     <li class="nav-item mb-2 text-center">
       <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-secondary' %>

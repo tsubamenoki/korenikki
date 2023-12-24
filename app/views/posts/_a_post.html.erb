@@ -32,6 +32,7 @@
     <div class="field mb-3">
       <i class="fa-solid fa-tag"></i>
         <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
+        <%= "(#{tag.posts.count})" %>
     </div>
     <% end %>
     <div id="comment_count" class="mb-3">
