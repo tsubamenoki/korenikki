@@ -23,16 +23,24 @@ class Post < ApplicationRecord
   #タグの新規投稿メソッド
   def save_tags(tags)
     tags.each do |new_tags|
-      self.tags.find_or_create_by(name: new_tags)
+      #tag = Tag.find_or_create_by(name: new_tags)
+      #self.tag_relationships.create!(post_id: self.id, tag_id: tag.id)
+
+      save_tag(new_tags)
       #selfは@post
     end
+  end
+
+  def save_tag(new_tag)
+    tag = Tag.find_or_create_by(name: new_tag)
+    self.tag_relationships.create!(post_id: self.id, tag_id: tag.id)
   end
 
   #タグの更新メソッド
   def update_tags(latest_tags)
     if self.tags.empty?
       latest_tags.each do |latest_tag|
-        self.tags.find_or_create_by(name: latest_tag)
+        save_tag(latest_tag)
       end
     elsif latest_tags.empty?
       self.tags.each do |tag|
@@ -49,7 +57,7 @@ class Post < ApplicationRecord
       end
 
       new_tags.each do |new_tag|
-        self.tags.find_or_create_by(name: new_tag)
+        save_tag(new_tag)
       end
     end
   end

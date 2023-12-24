@@ -6,6 +6,9 @@
     <div class="col-lg-7 mt-5 offset-1">
       <h2 class="text-center"><%= @tag.name %>の投稿</h2>
       <%= render "ichiran", obj: @posts %>
+      <div class="paginate text-center">
+          <%= paginate @posts %>
+        </div>
     </div>
   </div>
 </div>

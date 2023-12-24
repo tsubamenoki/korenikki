@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = current_user.posts
+    @posts = current_user.posts.page(params[:page])
     @tag_list = Tag.all
   end
 
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
 
   def search_tag
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts
+    @posts = @tag.posts.page(params[:page])
   end
 
   private
