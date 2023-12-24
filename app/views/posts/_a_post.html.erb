@@ -15,16 +15,15 @@
         <% post.post_images.each do |post_image| %>
           <%= image_tag post_image, class: "swiper-slide" %>
         <% end %>
+        <% unless post.post_images.attached? %>
+          <%= image_tag 'no_image_yoko.jpg', size: "300x300" %>
+        <% end %>
       </div>
-      <div class="swiper-pagination"></div>
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
     </div>
-    <% unless post.post_images.attached? %>
-      <div class="field mb-5">
-        <%= image_tag 'no_image_yoko.jpg', size: "300x300" %>
-      </div>
-    <% end %>
+
     <div class="field my-5">
       <h4><%= post.body %></h4>
     </div>
@@ -48,10 +47,11 @@
     </div>
   </div>
   <script>
-    const swiper = new Swiper('.swiper', {
+    var swiper = new Swiper('.swiper', {
       loop: true,
       pagination: {
         el: '.swiper-pagination',
+        clickable: true,
       },
       navigation: {
         nextEl: '.swiper-button-next',

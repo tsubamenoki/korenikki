@@ -11,6 +11,9 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    if @user.profile_image.attached?
+      @user.profile_image.purge
+    end
     if @user.update(user_params)
       flash[:success] = "変更しました"
       redirect_to root_path
