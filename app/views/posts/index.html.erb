@@ -1,17 +1,18 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
-    <% if @posts.present? %>
-    <div class="col-7">
+    <div class="col-lg-3 offset-1">
+      <%= render "layouts/sideber" %>
+    </div>
+  <% if @posts.present? %>
+    <div class="col-lg-7 offset-1">
+      <h2 class="text-center">投稿一覧</h2>
       <%= render 'layouts/flash_message' %>
       <%= render 'ichiran', obj: @posts %>
     </div>
     <% else %>
-    <div class="col-7 mt-5">
+    <div class="col-lg-7 offset-1 mt-5">
       <h2 class="text-center">まだ投稿がありません</h2>
     </div>
     <% end %>
-    <div class="col-2 offset-1">
-      <%= render "layouts/sideber" %>
-    </div>
   </div>
 </div>

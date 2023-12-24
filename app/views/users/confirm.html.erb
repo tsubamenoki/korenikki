@@ -1,16 +1,16 @@
 <div class="container mt-5">
   <%= render 'layouts/header' %>
   <div class="row mt-3">
-    <div class="col-8 text-center">
+    <div class="col-lg-2">
+      <%= render "layouts/sideber" %>
+    </div>
+    <div class="col-lg-7 text-center offset-1 mt-5">
       <h3>本当に退会しますか？</h3>
       <p>退会すると、会員登録情報や<br>
       これまでの投稿やメモが閲覧できなくなります。<br>
       退会する場合は、「退会する」をクリックしてください。</p>
       <%= link_to "退会しない", users_mypage_edit_path, class: "btn btn-sm btn-primary rounded"%>
       <%= link_to "退会する" , users_mypage_withdraw_path, class: "btn btn-sm btn-danger rounded", method: :patch %>
-    </div>
-    <div class="col-3 offset-1">
-      <%= render "layouts/sideber" %>
     </div>
   </div>
 </div>

@@ -1,12 +1,12 @@
 <div class="container mt-5">
 <%= render 'layouts/header' %>
   <div class="row justify-content-center">
-    <div class="col-8 mt-5">
+    <div class="col-lg-2">
+      <%= render "layouts/sideber" %>
+    </div>
+    <div class="col-lg-7 mt-5 offset-1">
       <%= render 'layouts/flash_message' %>
       <%= render 'a_post', post: @post, tags: @tags, post_comment: @post_comment, post_tags: @post_tags %>
-    </div>
-    <div class="col-2 offset-1">
-      <%= render "layouts/sideber" %>
     </div>
   </div>
 </div>

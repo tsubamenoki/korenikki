@@ -1,7 +1,11 @@
 <div class="container mt-5">
   <div class="row justify-content-center mt-3">
+    <div class="col-lg-3">
+      <%= render 'layouts/flash_message' %>
+      <%= render 'layouts/sideber' %>
+    </div>
   <% if @post.present? %>
-    <div class="col-7 mt-3">
+    <div class="col-lg-7 offset-1 mt-3">
       <h3 class="text-center">
         New
       </h3>
@@ -125,16 +129,11 @@
       </div>
     </div>
   <% else %>
-    <div class="col-7 mt-5">
+    <div class="col-lg-7 mt-5">
       <h2 class="text-center">
         まだ投稿がありません
       </h2>
     </div>
   <% end %>
-    <div class="col-2 offset-1">
-      <%= render 'layouts/flash_message' %>
-      <%= render 'layouts/sideber' %>
-    </div>
   </div>
 </div>
-
