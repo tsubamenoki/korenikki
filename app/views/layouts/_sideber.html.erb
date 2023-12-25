@@ -1,27 +1,27 @@
 <div class="text-center">
   <%= link_to top_path do %>
-    <%= image_tag "korenikki.png", size: "200x200" %>
+    <%= image_tag "korenikki.png", size: "200x50" %>
   <% end %>
 </div>
 <% if user_signed_in? %>
   <ul class="nav flex-column">
     <li class="nav-item mb-2 text-center">
-      <%= link_to "About", root_path, class: 'nav-link text-secondary' %>
+      <%= link_to "About", root_path, class: 'nav-link text-info' %>
     </li>
     <li class="nav-item mb-2 text-center">
-      <%= link_to "新規投稿", new_post_path, class: 'nav-link text-secondary' %>
+      <%= link_to "新規投稿", new_post_path, class: 'nav-link text-info' %>
     </li>
     <li class="nav-item mb-2 text-center">
-      <%= link_to "投稿一覧", posts_path, class: 'nav-link text-secondary' %>
+      <%= link_to "投稿一覧", posts_path, class: 'nav-link text-info' %>
     </li>
      <li class="nav-item mb-2 text-center">
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: 'nav-link text-secondary'%>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: 'nav-link text-info'%>
     </li>
   </ul>
-  <div class="card text-center">
+  <div class="card text-center bg-dark">
     <div class="card-header">
       <div class="field">
-        <p>プロフィール</p>
+        <p class="text-secondary">プロフィール</p>
         <% if current_user.email != "guest@example.com" %>
           <%= link_to users_mypage_edit_path do %>
             <i class="fa-solid fa-user-pen"></i>
@@ -29,7 +29,7 @@
         <% end %>
       </div>
     </div>
-    <div class="card-body">
+    <div class="card-body bg-secondary">
       <div class="field">
         <%= image_tag current_user.get_profile_image, size: "50x50", class: "user-icon" %>
       </div>
@@ -45,7 +45,7 @@
       <%= f.submit '検索', class: "btn-sm btn-primary" %>
     </div>
     <div class="tag_field">
-      <h3 class="text-center mb-5">タグ一覧</h3>
+      <h3 class="text-center mb-5 ">タグ一覧</h3>
       <% if tag_lists.present? %>
         <% tag_lists.each do |tag| %>
           <div class="tag_lists text-center mt-1">
