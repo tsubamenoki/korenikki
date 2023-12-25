@@ -82,7 +82,8 @@ class PostsController < ApplicationController
   def is_match_login_user
     post = Post.find(params[:id])
     unless post.user.id == current_user.id
-      redirect_to root_path
+      flash[:danger] = "他の人の投稿は閲覧できません"
+      redirect_to top_path
     end
   end
 end

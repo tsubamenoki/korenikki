@@ -45,7 +45,7 @@
       <%= f.submit '検索', class: "btn-sm btn-primary" %>
     </div>
     <div class="tag_field">
-      <h3 class="text-center mb-5 ">タグ一覧</h3>
+      <h3 class="text-center mb-5 text-secondary">タグ一覧</h3>
       <% if tag_lists.present? %>
         <% tag_lists.each do |tag| %>
           <div class="tag_lists text-center mt-1">
@@ -55,7 +55,7 @@
           </div>
         <% end %>
       <% else %>
-        <p class="text-center">まだ投稿がありません</p>
+        <p class="text-center text-secondary">まだ投稿がありません</p>
       <% end %>
     </div>
 
@@ -73,13 +73,13 @@
 <% else %>
   <ul class="nav flex-column">
     <li class="nav-item mb-2 text-center">
-      <%= link_to "About", root_path, class: 'nav-link text-secondary' %>
+      <%= link_to "About", root_path, class: 'nav-link text-info' %>
     </li>
     <li class="nav-item mb-2 text-center">
-      <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-secondary' %>
+      <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-info' %>
     </li>
     <li class="nav-item mb-2 text-center">
-      <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-secondary' %>
+      <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-info' %>
     </li>
   </ul>
 <% end %>

@@ -5,14 +5,15 @@
     </div>
   <% if @post.present? %>
     <div class="col-lg-8 offset-lg-1 mt-3">
-      <h3 class="text-center">
+      <%= render 'layouts/flash_message' %>
+      <h3 class="text-center text-secondary">
         New
       </h3>
       <%= render 'posts/a_post', post: @post, post_comment: @post_comment, post_tags: @post_tags %>
-      <h3 class="text-center mt-3">
+      <h3 class="text-center mt-3 text-secondary">
         メモ数の前日比・前週比
       </h3>
-        <table class="table table-bordered mt-3">
+        <table class="table table-bordered mt-3 text-secondary">
           <thead>
             <tr>
               <th>今日のメモ</th>
@@ -35,7 +36,7 @@
             </tr>
           </tbody>
         </table>
-        <table class="table table-bordered">
+        <table class="table table-bordered text-secondary">
           <thead>
             <tr>
               <th>今週のメモ数</th>
@@ -58,8 +59,8 @@
             </tr>
           </tbody>
         </table>
-      <h4 class="taxt-center">7日間分のメモ数</h4>
-        <table class="table table-bordered">
+      <h4 class="text-center text-secondary">7日間分のメモ数</h4>
+        <table class="table table-bordered text-secondary">
           <thead>
             <tr>
               <th>6日前</th>

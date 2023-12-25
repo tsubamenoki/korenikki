@@ -1,5 +1,4 @@
 <div class="container mt-5">
-<%= render "layouts/header" %>
   <%= form_with model: @user, url: user_registration_path do |f| %>
   <div class="row justify-content-center">
     <div class="col-lg-3">
@@ -9,10 +8,10 @@
       <%= render "layouts/flash_message" %>
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="card text-center">
-        <div class="card-header">
+        <div class="card-header bg-dark text-secondary">
           新規登録
         </div>
-        <div class="card-body">
+        <div class="card-body bg-light text-secondary">
           <div class="form-group">
             <div class="field">
               <%= f.label :名前 %><br>

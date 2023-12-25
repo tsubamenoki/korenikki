@@ -5,7 +5,7 @@
     </div>
   <% if @posts.present? %>
     <div class="col-lg-8 offset-lg-1 mt-5">
-      <h2 class="text-center">投稿一覧</h2>
+      <h2 class="text-center text-secondary">投稿一覧</h2>
       <%= render 'layouts/flash_message' %>
       <%= render 'ichiran', obj: @posts %>
       <div class="paginate text-center">
@@ -15,7 +15,7 @@
     <% else %>
     <div class="col-lg-8 offset-lg-1 mt-5">
       <%= render 'layouts/flash_message' %>
-      <h2 class="text-center">まだ投稿がありません</h2>
+      <h2 class="text-center text-secondary">まだ投稿がありません</h2>
     </div>
     <% end %>
   </div>

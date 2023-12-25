@@ -7,31 +7,31 @@
     <div class="col-lg-8 offset-lg-1">
     <%= render 'layouts/flash_message' %>
     <%= render 'layouts/error', obj: @post %>
-      <h2 class="text-center">投稿編集</h2>
+      <h2 class="text-center text-secondary">投稿編集</h2>
       <div class="card">
-        <div class="card-header">
+        <div class="card-header bg-dark">
           <div class="form-group">
-            <div class="date-field">
+            <div class="date-field text-secondary">
               <%= f.label :日付 %><br>
               <%= f.date_field :date, autofocus: true, class: "form-control" %>
             </div>
           </div>
         </div>
-        <div class="card-body">
+        <div class="card-body bg-light">
           <div class="form-group">
-            <div class="field mb-3">
+            <div class="field mb-3 text-secondary">
               <%= f.label :タイトル %><br>
-              <%= f.text_field :title, autofocus: true, class: "form-control" %>
+              <%= f.text_field :title, autofocus: true, placeholder: "20文字以内",  class: "form-control" %>
             </div>
-            <div class="field mb-3">
+            <div class="field mb-3 text-secondary">
               <%= f.label :画像 %><br>
               <%= f.file_field :post_images, multiple: true, autofocus: true %>
             </div>
-            <div class="field mb-3">
+            <div class="field mb-3 text-secondary">
               <%= f.label :本文 %><br>
-              <%= f.text_area :body, autofocus: true, class: "form-control" %>
+              <%= f.text_area :body, autofocus: true, placeholder: "500文字以内",  class: "form-control" %>
             </div>
-            <div class="field mb-3">
+            <div class="field mb-3 text-secondary">
               <%= f.label :タグ %>(,で区切ると複数タグ登録できます)<br>
               <%= f.text_field :tag_id, autofocus: true, value: @tags, class: "form-control" %>
             </div>

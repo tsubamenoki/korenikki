@@ -1,12 +1,11 @@
 <div class="container mt-5">
-  <%= render 'layouts/header' %>
   <div class="row mt-3">
     <div class="col-lg-3">
       <%= render "layouts/sideber", tag_lists: @tag_lists %>
     </div>
     <div class="col-lg-8 text-center offset-lg-1 mt-5">
-      <h3>本当に退会しますか？</h3>
-      <p>退会すると、会員登録情報や<br>
+      <h3 class=" text-secondary">本当に退会しますか？</h3>
+      <p class="text-secondary">退会すると、会員登録情報や<br>
       これまでの投稿やメモが閲覧できなくなります。<br>
       退会する場合は、「退会する」をクリックしてください。</p>
       <%= link_to "退会しない", users_mypage_edit_path, class: "btn btn-sm btn-primary rounded"%>

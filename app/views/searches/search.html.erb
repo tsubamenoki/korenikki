@@ -5,9 +5,9 @@
     </div>
     <div class="col-lg-8 mt-5 offset-lg-1">
       <% if @range == "日付" %>
-      <h3 class="text-center">"<%= @word %>"の検索結果(日付)</h3>
+      <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(日付)</h3>
         <% @date.each do |date_result| %>
-        <div class="post-item-list">
+        <div class="post-item-list text-secondary">
           <div class="post-item">
             <div class="post-image">
               <% date_result.post_images.first(1).each do |post_image| %>
@@ -42,9 +42,9 @@
           <%= paginate @date %>
         </div>
       <% elsif @range == "タイトル" %>
-      <h3 class="text-center">"<%= @word %>"の検索結果(タイトル)</h3>
+      <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(タイトル)</h3>
         <% @title.each do |title_result| %>
-        <div class="post-item-list">
+        <div class="post-item-list text-secondary">
           <div class="post-item">
             <div class="post-image">
               <% title_result.post_images.first(1).each do |post_image| %>
@@ -79,9 +79,9 @@
           <%= paginate @title %>
         </div>
       <% elsif @range == "本文" %>
-      <h3 class="text-center">"<%= @word %>"の検索結果(本文)</h3>
+      <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(本文)</h3>
         <% @body.each do |body_result| %>
-        <div class="post-item-list">
+        <div class="post-item-list text-secondary">
           <div class="post-item">
             <div class="post-image">
               <% body_result.post_images.first(1).each do |post_image| %>
@@ -116,9 +116,9 @@
           <%= paginate @body %>
         </div>
       <% else %>
-      <h3 class="text-center">"<%= @word %>"の検索結果(タグ)</h3>
+      <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(タグ)</h3>
         <% @tag.each do |tag_result| %>
-        <div class="post-item-list">
+        <div class="post-item-list text-secondary">
           <div class="post-item">
             <div class="post-image">
               <% tag_result.post_images.first(1).each do |post_image| %>
