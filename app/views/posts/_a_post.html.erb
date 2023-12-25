@@ -16,12 +16,14 @@
           <%= image_tag post_image, class: "swiper-slide" %>
         <% end %>
         <% unless post.post_images.attached? %>
-          <%= image_tag 'no_image_yoko.jpg', size: "300x300" %>
+          <%= image_tag 'no_image_yoko.jpg' %>
         <% end %>
       </div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-pagination"></div>
+      <% if post.post_images.attached? %>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      <% end %>
     </div>
 
     <div class="field my-5">
