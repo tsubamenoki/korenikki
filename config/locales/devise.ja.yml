@@ -3,6 +3,7 @@ ja:
     failure:
       invalid: メールアドレスまたはパスワードが正しくありません。
       unauthenticated: 認証されていません。ログインしてください。
+      not_found_in_database: "%{authentication_keys} もしくはパスワードが不正です。"
     sessions:
       signed_in: ログインに成功しました。
       signed_out: ログアウトしました。

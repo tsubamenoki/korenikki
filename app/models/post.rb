@@ -33,7 +33,7 @@ class Post < ApplicationRecord
 
   def save_tag(new_tag)
     tag = Tag.find_or_create_by(name: new_tag)
-    self.tag_relationships.create!(post_id: self.id, tag_id: tag.id)
+    self.tag_relationships.create(post_id: self.id, tag_id: tag.id)
   end
 
   #タグの更新メソッド

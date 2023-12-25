@@ -33,6 +33,7 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update(is_active: false)
     reset_session
+    flash[:success] = "退会しました。またのご利用お待ちしています。"
     redirect_to root_path
     tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
     @tag_lists = Tag.where(id: tag_ids)

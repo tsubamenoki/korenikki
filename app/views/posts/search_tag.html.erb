@@ -3,7 +3,7 @@
     <div class="col-lg-3">
       <%= render "layouts/sideber", tag_lists: @tag_lists %>
     </div>
-    <div class="col-lg-7 mt-5 offset-1">
+    <div class="col-lg-8 mt-5 offset-lg-1">
       <h2 class="text-center"><%= @tag.name %>の投稿</h2>
       <%= render "ichiran", obj: @posts %>
       <div class="paginate text-center">

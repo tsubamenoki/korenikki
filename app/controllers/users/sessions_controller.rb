@@ -48,6 +48,7 @@ class Users::SessionsController < Devise::SessionsController
     if user.is_active?
       return
     else
+      flash[:danger] = "退会済みです。再度ご登録をしてご利用ください。"
       redirect_to new_user_registration_path
     end
   end
