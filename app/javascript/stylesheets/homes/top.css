@@ -22,3 +22,7 @@ body {
 .pagination {
   justify-content: center;
 }
+
+footer {
+  position: sticky;
+}
