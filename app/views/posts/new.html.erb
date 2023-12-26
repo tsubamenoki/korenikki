@@ -12,7 +12,7 @@
         <div class="card-header bg-dark">
           <div class="form-group">
             <div class="date-field text-secondary">
-              <%= f.label :日付 %><br>
+              <%= f.label :日付 %>(必須)<br>
               <%= f.date_field :date, autofocus: true, class: "form-control" %>
             </div>
           </div>
@@ -20,7 +20,7 @@
         <div class="card-body bg-light">
             <div class="form-group">
               <div class="field mb-3 text-secondary">
-                <%= f.label :タイトル %><br>
+                <%= f.label :タイトル %>(必須)<br>
                 <%= f.text_field :title, autofocus: true, placeholder: "20文字以内", class: "form-control" %>
               </div>
               <div class="field mb-5 text-secondary">
@@ -28,7 +28,7 @@
                 <%= f.file_field :post_images, multiple: true, autofocus: true %>
               </div>
               <div class="field mb-3 text-secondary">
-                <%= f.label :本文 %><br>
+                <%= f.label :本文 %>(必須)<br>
                 <%= f.text_area :body, autofocus: true, placeholder: "500文字以内", class: "form-control" %>
               </div>
               <div class="field mb-3 text-secondary">

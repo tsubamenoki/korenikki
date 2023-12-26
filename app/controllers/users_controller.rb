@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     end
     if @user.update(user_params)
       flash[:success] = "変更しました"
-      redirect_to root_path
+      redirect_to top_path
     else
       flash.now[:danger] = "変更に失敗しました"
       render :edit
