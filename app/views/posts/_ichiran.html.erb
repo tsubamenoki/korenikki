@@ -20,7 +20,7 @@
         <p class="post-tags">
           <i class="fa-solid fa-tag"></i>
           <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
-          <%= "(#{tag.posts.count})" %>
+          <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
         </p>
         <% end %>
         <p class="post-date">
