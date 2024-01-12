@@ -1,5 +1,6 @@
 # これ日記
 ​![これにっき](https://github.com/tsubamenoki/korenikki/assets/144215790/eb1ee218-2665-4499-b4a4-b254722ea75e)
+![これにっきtop](https://github.com/tsubamenoki/korenikki/assets/144215790/e73e6c9d-e02c-45ea-8446-45eab660d9c7)
 ## サイト概要
 ### サイトテーマ
 日記とメモを組み合わせ、鮮明に記録できる日記サイト
