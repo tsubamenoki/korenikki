@@ -22,6 +22,7 @@
 ​
 ## 設計書
 - ER図
+  
 ![これにっきER図 drawio](https://github.com/tsubamenoki/korenikki/assets/144215790/ad4a5e11-67c5-44c1-925b-0ba40dd6abe0)
 
 - テーブル定義書
@@ -33,3 +34,4 @@ https://docs.google.com/spreadsheets/d/15nklrySNnjvUOw99k-JKdjNwTnp8TlMKcVoYiw9p
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- 本番環境 : AWS(EC2,Nginx,Puma)
