@@ -21,8 +21,10 @@
 - すぐにメモしたい出来事が起きたとき
 ​
 ## 設計書
-後ほど作成予定
-​
+- ER図
+
+- テーブル定義書
+  
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
