@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
     tags = params[:post][:tag_id].split(',')
     if @post.save
-     @post.save_tags(tags)
+     @post.save_tag(tags)
      flash[:success] = "投稿に成功しました"
       redirect_to post_path(@post)
     else

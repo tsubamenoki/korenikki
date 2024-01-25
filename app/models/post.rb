@@ -23,16 +23,12 @@ class Post < ApplicationRecord
   #タグの新規投稿メソッド
   def save_tags(tags)
     tags.each do |new_tags|
-      #tag = Tag.find_or_create_by(name: new_tags)
-      #self.tag_relationships.create!(post_id: self.id, tag_id: tag.id)
-
       save_tag(new_tags)
-      #selfは@post
     end
   end
 
-  def save_tag(new_tag)
-    tag = Tag.find_or_create_by(name: new_tag)
+  def save_tag(new_tags)
+    tag = Tag.find_or_create_by(name: new_tags)
     self.tag_relationships.create(post_id: self.id, tag_id: tag.id)
   end
 
