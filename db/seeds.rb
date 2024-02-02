@@ -5,3 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+guestuser = User.find_or_create_by!(email: "guest@example.com") do |guest|
+  guest.name = "guestuser"
+  guest.password = SecureRandom.urlsafe_base64
+end
+
+Post.find_or_create_by!(title: "【作成見本】野球いいですね") do |post|
+  post.post_images = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
+  post.body = "今日は野球観戦をしてきました。試合前のノックのうまさに恍惚としました。"
+  post.date = "2024-01-01"
+  post.user = guestuser
+end
+
+Post.find_or_create_by!(title: "【作成見本】なんだこいつ") do |post|
+  post.post_images = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post2.jpg"), filename:"sample-post2.jpg")
+  post.body = "沖縄旅行中謎の魚に遭遇。新種なのかも知れない。"
+  post.date = "2024-01-01"
+  post.user = guestuser
+end
+
+Post.find_or_create_by!(title: "【作成見本】本年もよろしくお願いします。") do |post|
+  post.post_images = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post3.jpg"), filename:"sample-post3.jpg")
+  post.body = "今日から辰年！そして本厄！何も起きないでください！"
+  post.date = "2024-01-01"
+  post.user = guestuser
+end
