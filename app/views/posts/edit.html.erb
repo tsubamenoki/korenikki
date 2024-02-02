@@ -13,7 +13,7 @@
           <div class="form-group">
             <div class="date-field text-secondary">
               <%= f.label :日付 %>(必須)<br>
-              <%= f.date_field :date, autofocus: true, class: "form-control" %>
+              <%= f.datetime_field :start_time, autofocus: true, class: "form-control" %>
             </div>
           </div>
         </div>
@@ -33,12 +33,12 @@
             </div>
             <div class="field mb-3 text-secondary">
               <%= f.label :タグ %>(,で区切ると複数タグ登録できます)<br>
-              <%= f.text_field :tag_id, autofocus: true, value: @tags, class: "form-control" %>
+              <%= f.text_field :tag_name, autofocus: true, value: @tags, class: "form-control" %>
             </div>
             <div class="text-center">
               <div class="btn mt-3">
                 <%= f.submit "保存", class: "btn btn-primary" %>
-                <%= link_to "削除", post_path(@post), class: "btn btn-danger", method: :delete %>
+                <%= link_to "削除", post_path(@post), class: "btn btn-danger", method: :delete, data: {confirm: "本当に削除しますか？"} %>
               </div>
             </div>
           </div>

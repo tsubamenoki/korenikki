@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tags = params[:post][:tag_id].split(',')
+    tags = params[:post][:tag_name].split(',')
     if @post.save
      @post.save_tag(tags)
      flash[:success] = "投稿に成功しました"
@@ -48,9 +48,9 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    tags = params[:post][:tag_id].split(',')
+    tags = params[:post][:tag_name].split(',')
     if @post.update(post_params)
-      @post.update_tags(tags)
+      @post.save_tag(tags)
       flash[:success] = "変更しました"
       redirect_to post_path(@post)
     else
@@ -76,7 +76,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :date, post_images: [])
+    params.require(:post).permit(:title, :body, :start_time, post_images: [])
   end
 
   def is_match_login_user

@@ -10,3 +10,24 @@ ja:
       previous: "<"
       next: ">"
       truncate: "..."
+
+  activerecord:
+    models:
+      user: "ユーザー"
+      post: "投稿"
+      tag : "タグ"
+      comment: "コメント"
+
+    attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+
+      post:
+        title: "タイトル"
+        body: "本文"
+        date: "日付"
+
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'

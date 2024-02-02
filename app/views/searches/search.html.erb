@@ -22,7 +22,7 @@
                 <%= link_to date_result.title, post_path(date_result), class: "text-secondary" %>
               </p>
               <p class="post-body">
-                <%= date_result.date %>
+                <%= date_result.body %>
               </p>
               <% date_result.tags.first(3).each do |tag| %>
               <p class="post-tags">
@@ -32,7 +32,7 @@
               </p>
               <% end %>
               <p class="post-date">
-                <%= date_result.body %>
+                <%= date_result.start_time.strftime('%Y-%m-%d %H:%M') %>
               </p>
             </section>
           </div>
@@ -59,7 +59,7 @@
                 <%= link_to title_result.title, post_path(title_result), class: "text-secondary" %>
               </p>
               <p class="post-body">
-                <%= title_result.date %>
+                <%= title_result.body %>
               </p>
               <% title_result.tags.first(3).each do |tag| %>
               <p class="post-tags">
@@ -69,7 +69,7 @@
               </p>
               <% end %>
               <p class="post-date">
-                <%= title_result.body %>
+                <%= title_result.start_time.strftime('%Y-%m-%d %H:%M') %>
               </p>
             </section>
           </div>
@@ -96,7 +96,7 @@
                 <%= link_to body_result.title, post_path(body_result), class: "text-secondary" %>
               </p>
               <p class="post-body">
-                <%= body_result.date %>
+                <%= body_result.body %>
               </p>
               <% body_result.tags.first(3).each do |tag| %>
               <p class="post-tags">
@@ -106,7 +106,7 @@
               </p>
               <% end %>
               <p class="post-date">
-                <%= body_result.body %>
+                <%= body_result.start_time.strftime('%Y-%m-%d %H:%M') %>
               </p>
             </section>
           </div>
@@ -133,7 +133,7 @@
                 <%= link_to tag_result.title, post_path(tag_result), class: "text-secondary" %>
               </p>
               <p class="post-body">
-                <%= tag_result.date %>
+                <%= tag_result.body %>
               </p>
               <% tag_result.tags.first(3).each do |tag| %>
               <p class="post-tags">
@@ -143,7 +143,7 @@
               </p>
               <% end %>
               <p class="post-date">
-                <%= tag_result.body %>
+                <%= tag_result.start_time.strftime('%Y-%m-%d %H:%M') %>
               </p>
             </section>
           </div>
