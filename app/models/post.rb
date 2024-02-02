@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
     validates :title, presence: true, length: { maximum: 20 }
     validates :body, presence: true, length: { maximum: 500 }
-    validates :date, presence: true
+    validates :start_time, presence: true
 
   #投稿画像のメソッド
   def get_post_image
@@ -20,41 +20,20 @@ class Post < ApplicationRecord
     post_images
   end
 
-  #タグの新規投稿メソッド
-  def save_tags(tags)
-    tags.each do |new_tags|
-      save_tag(new_tags)
+  def save_tag(tags)
+    #タグが存在していれば、タグの名前を配列として全て取得
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    old_tags = current_tags - tags
+    new_tags = tags - current_tags
+
+    old_tags.each do |old|
+      self.tags.delete Tag.find_by(name: old)
     end
-  end
 
-  def save_tag(new_tags)
-    tag = Tag.find_or_create_by(name: new_tags)
-    self.tag_relationships.create(post_id: self.id, tag_id: tag.id)
-  end
-
-  #タグの更新メソッド
-  def update_tags(latest_tags)
-    if self.tags.empty?
-      latest_tags.each do |latest_tag|
-        save_tag(latest_tag)
-      end
-    elsif latest_tags.empty?
-      self.tags.each do |tag|
-        self.tags.delete(tag)
-      end
-    else
-      current_tags = self.tags.pluck(:name)
-      old_tags = current_tags - latest_tags
-      new_tags = latest_tags - current_tags
-
-      old_tags.each do |old_tag|
-        tag = self.tags.find_by(name: old_tag)
-        self.tags.delete(tag) if tag.present?
-      end
-
-      new_tags.each do |new_tag|
-        save_tag(new_tag)
-      end
+    new_tags.each do |new|
+      new_post_tag = Tag.find_or_create_by(name: new)
+      #new_post_tagがself.tagsの末尾に代入
+      self.tags << new_post_tag
     end
   end
 end

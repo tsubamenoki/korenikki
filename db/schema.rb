@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2023_12_11_022859) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "body", null: false
-    t.date "date", null: false
+    t.datetime "start_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2023_12_11_022859) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id", "tag_id"], name: "index_tag_relationships_on_post_id_and_tag_id", unique: true
     t.index ["post_id"], name: "index_tag_relationships_on_post_id"
     t.index ["tag_id"], name: "index_tag_relationships_on_tag_id"
   end
@@ -82,6 +83,7 @@ ActiveRecord::Schema.define(version: 2023_12_11_022859) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
