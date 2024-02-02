@@ -67,7 +67,7 @@ class PostsController < ApplicationController
   end
 
   def search_tag
-    @tag = Tag.find(params[:tag_name])
+    @tag = Tag.find(params[:tag_id])
     @posts = @tag.posts.order(created_at: :desc).where(user_id: current_user.id).page(params[:page])
     tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
     @tag_lists = Tag.where(id: tag_ids)
