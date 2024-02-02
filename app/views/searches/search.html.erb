@@ -21,8 +21,8 @@
               <p class="post-title">
                 <%= link_to date_result.title, post_path(date_result), class: "text-secondary" %>
               </p>
-              <p class="post-date">
-                <%= date_result.start_time.strftime('%Y-%m-%d %H:%M') %>
+              <p class="post-body">
+                <%= date_result.body %>
               </p>
               <% date_result.tags.first(3).each do |tag| %>
               <p class="post-tags">
@@ -31,8 +31,8 @@
                 <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
               </p>
               <% end %>
-              <p class="post-body">
-                <%= date_result.body %>
+              <p class="post-date">
+                <%= date_result.start_time.strftime('%Y-%m-%d %H:%M') %>
               </p>
             </section>
           </div>
@@ -58,8 +58,8 @@
               <p class="post-title">
                 <%= link_to title_result.title, post_path(title_result), class: "text-secondary" %>
               </p>
-              <p class="post-date">
-                <%= title_result.start_time.strftime('%Y-%m-%d %H:%M') %>
+              <p class="post-body">
+                <%= title_result.body %>
               </p>
               <% title_result.tags.first(3).each do |tag| %>
               <p class="post-tags">
@@ -68,8 +68,8 @@
                 <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
               </p>
               <% end %>
-              <p class="post-body">
-                <%= title_result.body %>
+              <p class="post-date">
+                <%= title_result.start_time.strftime('%Y-%m-%d %H:%M') %>
               </p>
             </section>
           </div>
@@ -95,8 +95,8 @@
               <p class="post-title">
                 <%= link_to body_result.title, post_path(body_result), class: "text-secondary" %>
               </p>
-              <p class="post-date">
-                <%= body_result.start_time.strftime('%Y-%m-%d %H:%M') %>
+              <p class="post-body">
+                <%= body_result.body %>
               </p>
               <% body_result.tags.first(3).each do |tag| %>
               <p class="post-tags">
@@ -105,8 +105,8 @@
                 <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
               </p>
               <% end %>
-              <p class="post-body">
-                <%= body_result.body %>
+              <p class="post-date">
+                <%= body_result.start_time.strftime('%Y-%m-%d %H:%M') %>
               </p>
             </section>
           </div>
@@ -132,8 +132,8 @@
               <p class="post-title">
                 <%= link_to tag_result.title, post_path(tag_result), class: "text-secondary" %>
               </p>
-              <p class="post-date">
-                <%= tag_result.start_time.strftime('%Y-%m-%d %H:%M') %>
+              <p class="post-body">
+                <%= tag_result.body %>
               </p>
               <% tag_result.tags.first(3).each do |tag| %>
               <p class="post-tags">
@@ -142,8 +142,8 @@
                 <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
               </p>
               <% end %>
-              <p class="post-body">
-                <%= tag_result.body %>
+              <p class="post-date">
+                <%= tag_result.start_time.strftime('%Y-%m-%d %H:%M') %>
               </p>
             </section>
           </div>

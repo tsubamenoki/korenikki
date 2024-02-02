@@ -7,7 +7,7 @@ class SearchesController < ApplicationController
     @post = current_user.posts
 
     if @range == "日付"
-      @date = @post.order(created_at: :desc).where("date like?","%#{@word}%").page(params[:page])
+      @date = @post.order(created_at: :desc).where("start_time like?","%#{@word}%").page(params[:page])
     elsif @range == "タイトル"
       @title = @post.order(created_at: :desc).where("title like?","%#{@word}%").page(params[:page])
     elsif @range == "本文"
