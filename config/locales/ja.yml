@@ -22,6 +22,8 @@ ja:
       user:
         name: "名前"
         email: "メールアドレス"
+      post_comment:
+        comment: "コメント"
 
       post:
         title: "タイトル"
@@ -31,3 +33,4 @@ ja:
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
+        too_long: "は%{count}文字以下で入力してください"

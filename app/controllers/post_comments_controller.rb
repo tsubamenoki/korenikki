@@ -6,7 +6,6 @@ class PostCommentsController < ApplicationController
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.post_id = @post.id
     unless @post_comment.save
-      flash.now[:danger] = "投稿しました"
       render 'error'
     end
     @new_post_comment = PostComment.new
