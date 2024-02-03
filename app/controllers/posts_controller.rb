@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  include Taggable
   before_action :authenticate_user!
   before_action :is_match_login_user, only: [:show, :edit, :update, :destroy]
   before_action :set_tags, only: [:new, :show, :index, :edit, :search_tag]
@@ -76,10 +77,5 @@ class PostsController < ApplicationController
       flash[:danger] = "他の人の投稿は閲覧できません"
       redirect_to top_path
     end
-  end
-
-  def set_tags
-    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
-    @tag_lists = Tag.where(id: tag_ids)
   end
 end

@@ -1,5 +1,7 @@
 class SearchesController < ApplicationController
+  include Taggable
   before_action :authenticate_user!
+  before_action :set_tags, only: [:search]
 
   def search
     @range = params[:range]

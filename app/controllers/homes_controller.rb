@@ -24,7 +24,9 @@ class HomesController < ApplicationController
   private
 
   def set_tags
-    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
-    @tag_lists = Tag.where(id: tag_ids)
+    if user_signed_in?
+      tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
+      @tag_lists = Tag.where(id: tag_ids)
+    end
   end
 end

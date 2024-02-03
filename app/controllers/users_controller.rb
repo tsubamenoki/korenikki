@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
+  include Taggable
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
+  before_action :set_tags, only: [:edit, :confirm, :withdraw]
 
 
   def edit
     @user = current_user
-    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
-    @tag_lists = Tag.where(id: tag_ids)
   end
 
   def update
@@ -25,8 +25,6 @@ class UsersController < ApplicationController
 
   def confirm
     @user = current_user
-    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
-    @tag_lists = Tag.where(id: tag_ids)
   end
 
   def withdraw
@@ -35,8 +33,6 @@ class UsersController < ApplicationController
     reset_session
     flash[:success] = "退会しました。またのご利用お待ちしています。"
     redirect_to root_path
-    tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
-    @tag_lists = Tag.where(id: tag_ids)
   end
 
   private
@@ -51,5 +47,4 @@ class UsersController < ApplicationController
       redirect_to root_path , notice: "ゲストユーザーはプロフィール画面に遷移できません。"
     end
   end
-
 end
