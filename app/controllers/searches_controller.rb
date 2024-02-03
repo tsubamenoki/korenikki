@@ -1,7 +1,9 @@
 class SearchesController < ApplicationController
   include Taggable
+  include Postable
   before_action :authenticate_user!
   before_action :set_tags, only: [:search]
+  before_action :set_calendar, only: [:search]
 
   def search
     @range = params[:range]
