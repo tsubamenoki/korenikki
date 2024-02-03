@@ -1,7 +1,7 @@
 <div class="container mt-5 bg-dark">
   <div class="row justify-content-center mt-3">
     <div class="col-lg-3">
-      <%= render 'layouts/sideber', tag_lists: @tag_lists %>
+      <%= render 'layouts/sideber', tag_lists: @tag_lists, posts: @posts %>
     </div>
   <% if @post.present? %>
     <div class="col-lg-8 offset-lg-1 mt-3">

@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-lg-3">
-      <%= render "layouts/sideber", tag_lists: @tag_lists %>
+      <%= render "layouts/sideber", tag_lists: @tag_lists, posts: @posts %>
     </div>
     <div class="col-lg-8 mt-5 offset-lg-1">
       <% if @range == "日付" %>

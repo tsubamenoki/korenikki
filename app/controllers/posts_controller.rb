@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   include Taggable
+  include Postable
   before_action :authenticate_user!
   before_action :is_match_login_user, only: [:show, :edit, :update, :destroy]
   before_action :set_tags, only: [:new, :show, :index, :edit, :search_tag]
-
+  before_action :set_calendar, only: [:new, :show, :index, :edit, :search_tag]
 
   def new
     @post = Post.new
+    @posts = current_user.posts
   end
 
   def create

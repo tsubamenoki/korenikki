@@ -60,15 +60,15 @@
     </div>
 
     <div class="calendar mt-5">
-        <%= month_calendar posts: @posts do |date, posts| %>
-          <%= date.day %>
-          <% posts.each do |post| %>
+      <%= month_calendar events: posts do |date, posts| %>
+        <%= date.day %>
+        <% posts.each do |post| %>
           <% if post.present? %>
-            <%= link_to "🐜", posts_path(post) %>
-          <% end %>
+            <%= link_to "🐜", post_path(post) %>
           <% end %>
         <% end %>
-      </div>
+      <% end %>
+    </div>
   <% end %>
 <% else %>
   <ul class="nav flex-column">

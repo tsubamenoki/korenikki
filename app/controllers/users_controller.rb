@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   include Taggable
+  include Postable
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
-  before_action :set_tags, only: [:edit, :confirm, :withdraw]
+  before_action :set_tags, only: [:edit, :confirm]
+  before_action :set_calendar, only: [:edit, :confirm]
 
 
   def edit

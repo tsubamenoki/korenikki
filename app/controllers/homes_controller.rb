@@ -1,6 +1,7 @@
 class HomesController < ApplicationController
   before_action :authenticate_user!, except: [:about]
   before_action :set_tags, only: [:top, :about]
+  before_action :set_calendar, only: [:top, :about]
 
   def top
     @post = current_user.posts.last
@@ -27,6 +28,12 @@ class HomesController < ApplicationController
     if user_signed_in?
       tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
       @tag_lists = Tag.where(id: tag_ids)
+    end
+  end
+
+  def set_calendar
+    if user_signed_in?
+      @posts = current_user.posts.all
     end
   end
 end
