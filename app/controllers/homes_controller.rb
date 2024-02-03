@@ -1,5 +1,6 @@
 class HomesController < ApplicationController
   before_action :authenticate_user!, except: [:about]
+  before_action :set_tags, only: [:top, :about]
 
   def top
     @post = current_user.posts.last
@@ -14,6 +15,16 @@ class HomesController < ApplicationController
       @last_week_commnet = @post_comments.created_last_week
       #タグ関連
       @post_tags = @post.tags
+    end
+  end
+
+  def about
+  end
+
+  private
+
+  def set_tags
+    if user_signed_in?
       tag_ids = TagRelationship.where(post_id: current_user.posts.pluck(:id)).pluck(:tag_id)
       @tag_lists = Tag.where(id: tag_ids)
     end
