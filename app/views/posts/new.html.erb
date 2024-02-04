@@ -1,5 +1,5 @@
 <div class="container mt-5">
-<%= form_with model: Post.new do |f| %>
+<%= form_with model: @post do |f| %>
   <div class="row justify-content-center">
     <div class="col-lg-3">
       <%= render "layouts/sideber", tag_lists: @tag_lists, posts: @posts %>
@@ -18,30 +18,30 @@
           </div>
         </div>
         <div class="card-body bg-light">
-            <div class="form-group">
-              <div class="field mb-3 text-secondary">
-                <%= f.label :タイトル %>(必須)<br>
-                <%= f.text_field :title, autofocus: true, placeholder: "20文字以内", class: "form-control" %>
-              </div>
-              <div class="field mb-5 text-secondary">
-                <%= f.label :画像 %><br>
-                <%= f.file_field :post_images, multiple: true, autofocus: true %>
-              </div>
-              <div class="field mb-3 text-secondary">
-                <%= f.label :本文 %>(必須)<br>
-                <%= f.text_area :body, autofocus: true, placeholder: "500文字以内", class: "form-control" %>
-              </div>
-              <div class="field mb-3 text-secondary">
-                <%= f.label :タグ %>(,で区切ると複数タグ登録できます)<br>
-                <%= f.text_field :tag_name, autofocus: true, class: "form-control" %>
-              </div>
-              <div class="text-center">
-                <div class="btn mt-3">
-                  <%= f.submit "投稿", class: "btn btn-primary" %>
-                </div>
+          <div class="form-group">
+            <div class="field mb-3 text-secondary">
+              <%= f.label :タイトル %>(必須)<br>
+              <%= f.text_field :title, autofocus: true, placeholder: "20文字以内", class: "form-control" %>
+            </div>
+            <div class="field mb-5 text-secondary">
+              <%= f.label :画像 %><br>
+              <%= f.file_field :post_images, multiple: true, autofocus: true %>
+            </div>
+            <div class="field mb-3 text-secondary">
+              <%= f.label :本文 %>(必須)<br>
+              <%= f.text_area :body, autofocus: true, placeholder: "500文字以内", class: "form-control" %>
+            </div>
+            <div class="field mb-3 text-secondary">
+              <%= f.label :タグ %>(,で区切ると複数タグ登録できます)<br>
+              <%= f.text_field :tag_name, autofocus: true, class: "form-control" %>
+            </div>
+            <div class="text-center">
+              <div class="btn mt-3">
+                <%= f.submit "投稿", class: "btn btn-primary" %>
               </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>

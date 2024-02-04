@@ -1,4 +1,3 @@
-
 <div class="card text-center">
   <div class="card-header bg-dark">
     <div class="field mb-3 text-secondary">
@@ -25,14 +24,13 @@
         <div class="swiper-pagination"></div>
       <% end %>
     </div>
-
     <div class="field my-5">
       <h5><%= post.body %></h5>
     </div>
     <% post_tags.each do |tag| %>
     <div class="field mb-3">
       <i class="fa-solid fa-tag"></i>
-        <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
+        <%= link_to tag.name, search_tag_path(tag_id: tag.id), class: "text-secondary" %>
         <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
     </div>
     <% end %>

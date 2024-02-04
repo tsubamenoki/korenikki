@@ -5,18 +5,16 @@ class HomesController < ApplicationController
 
   def top
     @post = current_user.posts.last
-    unless @post == nil
-      #コメント機能
-      @post_comment = PostComment.new
-      @post_comments = PostComment.all
-      #コメントグラフ
-      @today_comment = @post_comments.created_today
-      @yesterday_comment = @post_comments.created_yesterday
-      @this_week_comment = @post_comments.created_this_week
-      @last_week_commnet = @post_comments.created_last_week
-      #タグ関連
-      @post_tags = @post.tags
-    end
+    #コメント機能
+    @post_comment = PostComment.new
+    @post_comments = current_user.post_comments.all
+    #コメントグラフ
+    @today_comment = @post_comments.created_today
+    @yesterday_comment = @post_comments.created_yesterday
+    @this_week_comment = @post_comments.created_this_week
+    @last_week_commnet = @post_comments.created_last_week
+    #タグ関連
+    @post_tags = @post.tags
   end
 
   def about
