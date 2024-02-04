@@ -10,16 +10,6 @@ class Post < ApplicationRecord
     validates :body, presence: true, length: { maximum: 500 }
     validates :start_time, presence: true
 
-  #投稿画像のメソッド
-  def get_post_image
-    #byebug
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image_yoko.jpg')
-      image.attached(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-    post_images
-  end
-
   def save_tag(tags)
     #タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?

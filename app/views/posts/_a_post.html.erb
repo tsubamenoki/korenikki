@@ -16,7 +16,7 @@
           <%= image_tag post_image, class: "swiper-slide" %>
         <% end %>
         <% unless post.post_images.attached? %>
-          <%= image_tag 'no_image_yoko.jpg' %>
+          <%= image_tag 'no_image_yoko.jpg', size: "400x250" %>
         <% end %>
       </div>
       <% if post.post_images.attached? %>
