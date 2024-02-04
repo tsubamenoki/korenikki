@@ -14,7 +14,9 @@ class HomesController < ApplicationController
     @this_week_comment = @post_comments.created_this_week
     @last_week_commnet = @post_comments.created_last_week
     #タグ関連
-    @post_tags = @post.tags
+    unless @post == nil
+      @post_tags = @post.tags
+    end
   end
 
   def about
