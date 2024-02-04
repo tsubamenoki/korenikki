@@ -28,7 +28,7 @@ ja:
       post:
         title: "タイトル"
         body: "本文"
-        date: "日付"
+        start_time: "日付"
 
     errors:
       messages:

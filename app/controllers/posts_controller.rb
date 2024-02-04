@@ -27,7 +27,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @tags = @post.tags.pluck(:name).join(',')
     @post_tags = @post.tags
     @post_comment = PostComment.new
   end
