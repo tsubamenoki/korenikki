@@ -33,7 +33,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = current_user.posts.order(created_at: :desc).page(params[:page])
-    @tag_list = Tag.all
   end
 
   def edit
