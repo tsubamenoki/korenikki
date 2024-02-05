@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = current_user.posts.order(created_at: :desc).page(params[:page])
+    @posts = current_user.posts.order(start_time: :desc).page(params[:page])
   end
 
   def edit
@@ -63,7 +63,7 @@ class PostsController < ApplicationController
 
   def search_tag
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts.order(created_at: :desc).where(user_id: current_user.id).page(params[:page])
+    @posts = @tag.posts.order(start_time: :desc).where(user_id: current_user.id).page(params[:page])
   end
 
   private

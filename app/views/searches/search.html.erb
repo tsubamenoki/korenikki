@@ -6,41 +6,7 @@
     <div class="col-lg-8 mt-5 offset-lg-1">
       <% if @range == "日付" %>
       <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(日付)</h3>
-        <% @date.each do |date_result| %>
-        <div class="post-item-list text-secondary">
-          <div class="post-item">
-            <div class="post-image">
-              <% date_result.post_images.first(1).each do |post_image| %>
-                <%= image_tag post_image, size: "160x160" %>
-              <% end %>
-              <% unless date_result.post_images.attached? %>
-                <%= image_tag 'no_image_yoko.jpg', size: "160x160" %>
-              <% end %>
-            </div>
-            <section class="post-text">
-              <p class="post-title">
-                <%= link_to date_result.title, post_path(date_result), class: "text-secondary" %>
-              </p>
-              <p class="post-body">
-                <%= date_result.body %>
-              </p>
-              <% date_result.tags.first(3).each do |tag| %>
-              <p class="post-tags">
-                <i class="fa-solid fa-tag"></i>
-                <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
-                <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
-              </p>
-              <% end %>
-              <p class="post-date">
-                <%= date_result.start_time.strftime('%Y-%m-%d %H:%M') %>
-              </p>
-            </section>
-          </div>
-        </div>
-        <% end %>
-        <div class="paginate text-center">
-          <%= paginate @date %>
-        </div>
+        <%= render "result" , obj: @date %>
       <% elsif @range == "タイトル" %>
       <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(タイトル)</h3>
         <% @title.each do |title_result| %>
