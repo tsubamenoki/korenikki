@@ -12,7 +12,7 @@
         <div class="card-body bg-light">
           <div class="form-group text-secondary">
             <div class="field mb-3">
-              <%= f.label :名前 %>(2文字以上20文字以内)<br>
+              <%= f.label :名前 %>(必須 2文字以上20文字以内)<br>
               <%= f.text_field :name, autofocus: true, class: "form-control" %>
             </div>
             <div class="field mb-3">
@@ -20,7 +20,7 @@
               <%= f.file_field :profile_image %>
             </div>
             <div class="field mb-3">
-              <%= f.label :メールアドレス %><br>
+              <%= f.label :メールアドレス %>(必須)<br>
               <%= f.text_field :email, autofocus: true, class: "form-control" %>
             </div>
             <div class="field mb-3">

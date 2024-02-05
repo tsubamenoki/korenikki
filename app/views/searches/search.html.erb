@@ -6,152 +6,16 @@
     <div class="col-lg-8 mt-5 offset-lg-1">
       <% if @range == "日付" %>
       <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(日付)</h3>
-        <% @date.each do |date_result| %>
-        <div class="post-item-list text-secondary">
-          <div class="post-item">
-            <div class="post-image">
-              <% date_result.post_images.first(1).each do |post_image| %>
-                <%= image_tag post_image, size: "160x160" %>
-              <% end %>
-              <% unless date_result.post_images.attached? %>
-                <%= image_tag 'no_image_yoko.jpg', size: "160x160" %>
-              <% end %>
-            </div>
-            <section class="post-text">
-              <p class="post-title">
-                <%= link_to date_result.title, post_path(date_result), class: "text-secondary" %>
-              </p>
-              <p class="post-body">
-                <%= date_result.body %>
-              </p>
-              <% date_result.tags.first(3).each do |tag| %>
-              <p class="post-tags">
-                <i class="fa-solid fa-tag"></i>
-                <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
-                <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
-              </p>
-              <% end %>
-              <p class="post-date">
-                <%= date_result.start_time.strftime('%Y-%m-%d %H:%M') %>
-              </p>
-            </section>
-          </div>
-        </div>
-        <% end %>
-        <div class="paginate text-center">
-          <%= paginate @date %>
-        </div>
+        <%= render "result" , obj: @date %>
       <% elsif @range == "タイトル" %>
       <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(タイトル)</h3>
-        <% @title.each do |title_result| %>
-        <div class="post-item-list text-secondary">
-          <div class="post-item">
-            <div class="post-image">
-              <% title_result.post_images.first(1).each do |post_image| %>
-                <%= image_tag post_image, size: "160x160" %>
-              <% end %>
-              <% unless title_result.post_images.attached? %>
-                <%= image_tag 'no_image_yoko.jpg', size: "160x160" %>
-              <% end %>
-            </div>
-            <section class="post-text">
-              <p class="post-title">
-                <%= link_to title_result.title, post_path(title_result), class: "text-secondary" %>
-              </p>
-              <p class="post-body">
-                <%= title_result.body %>
-              </p>
-              <% title_result.tags.first(3).each do |tag| %>
-              <p class="post-tags">
-                <i class="fa-solid fa-tag"></i>
-                <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
-                <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
-              </p>
-              <% end %>
-              <p class="post-date">
-                <%= title_result.start_time.strftime('%Y-%m-%d %H:%M') %>
-              </p>
-            </section>
-          </div>
-        </div>
-        <% end %>
-        <div class="paginate text-center">
-          <%= paginate @title %>
-        </div>
+        <%= render "result" , obj: @title %>
       <% elsif @range == "本文" %>
       <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(本文)</h3>
-        <% @body.each do |body_result| %>
-        <div class="post-item-list text-secondary">
-          <div class="post-item">
-            <div class="post-image">
-              <% body_result.post_images.first(1).each do |post_image| %>
-                <%= image_tag post_image, size: "160x160" %>
-              <% end %>
-              <% unless body_result.post_images.attached? %>
-                <%= image_tag 'no_image_yoko.jpg', size: "160x160" %>
-              <% end %>
-            </div>
-            <section class="post-text">
-              <p class="post-title">
-                <%= link_to body_result.title, post_path(body_result), class: "text-secondary" %>
-              </p>
-              <p class="post-body">
-                <%= body_result.body %>
-              </p>
-              <% body_result.tags.first(3).each do |tag| %>
-              <p class="post-tags">
-                <i class="fa-solid fa-tag"></i>
-                <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
-                <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
-              </p>
-              <% end %>
-              <p class="post-date">
-                <%= body_result.start_time.strftime('%Y-%m-%d %H:%M') %>
-              </p>
-            </section>
-          </div>
-        </div>
-        <% end %>
-        <div class="paginate text-center">
-          <%= paginate @body %>
-        </div>
+        <%= render "result" , obj: @body %>
       <% else %>
       <h3 class="text-center text-secondary">"<%= @word %>"の検索結果(タグ)</h3>
-        <% @tag.each do |tag_result| %>
-        <div class="post-item-list text-secondary">
-          <div class="post-item">
-            <div class="post-image">
-              <% tag_result.post_images.first(1).each do |post_image| %>
-                <%= image_tag post_image, size: "160x160" %>
-              <% end %>
-              <% unless tag_result.post_images.attached? %>
-                <%= image_tag 'no_image_yoko.jpg', size: "160x160" %>
-              <% end %>
-            </div>
-            <section class="post-text">
-              <p class="post-title">
-                <%= link_to tag_result.title, post_path(tag_result), class: "text-secondary" %>
-              </p>
-              <p class="post-body">
-                <%= tag_result.body %>
-              </p>
-              <% tag_result.tags.first(3).each do |tag| %>
-              <p class="post-tags">
-                <i class="fa-solid fa-tag"></i>
-                <%= link_to tag.name,search_tag_path(tag_id: tag.id), class: "text-secondary" %>
-                <%= "(#{tag.posts.where(user_id: current_user.id).count})" %>
-              </p>
-              <% end %>
-              <p class="post-date">
-                <%= tag_result.start_time.strftime('%Y-%m-%d %H:%M') %>
-              </p>
-            </section>
-          </div>
-        </div>
-        <% end %>
-        <div class="paginate text-center">
-          <%= paginate @tag %>
-        </div>
+        <%= render "result" , obj: @tag %>
       <% end %>
     </div>
   </div>

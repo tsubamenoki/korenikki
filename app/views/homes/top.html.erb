@@ -88,43 +88,45 @@
         <canvas id="myChart"></canvas>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
-        var ctx = document.getElementById('myChart');
-        var myLineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['6日前','5日前','4日前','3日前','2日前','昨日','今日'],
-            datasets: [{
-                label: 'メモ数',
-                data: [
-                  <%= @post_comments.created_6days_ago.count %>,
-                  <%= @post_comments.created_5days_ago.count %>,
-                  <%= @post_comments.created_4days_ago.count %>,
-                  <%= @post_comments.created_3days_ago.count %>,
-                  <%= @post_comments.created_2days_ago.count %>,
-                  <%= @yesterday_comment.count %>,
-                  <%= @today_comment.count %>],
-                backgroundColor: "rgba(0,0,0,0)",
-                borderColor: "rgba(0,0,255,1)",
-                lineTension: 0.3,
-                borderWidth: 3
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: '7日間のメモ数'
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        Max: 30,
-                        Min: 0,
-                        stepsize: 5,
-                    },
+          $(document).on('turbolinks:load', function() {
+            var ctx = document.getElementById('myChart');
+            var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['6日前','5日前','4日前','3日前','2日前','昨日','今日'],
+                datasets: [{
+                    label: 'メモ数',
+                    data: [
+                      <%= @post_comments.created_6days_ago.count %>,
+                      <%= @post_comments.created_5days_ago.count %>,
+                      <%= @post_comments.created_4days_ago.count %>,
+                      <%= @post_comments.created_3days_ago.count %>,
+                      <%= @post_comments.created_2days_ago.count %>,
+                      <%= @yesterday_comment.count %>,
+                      <%= @today_comment.count %>],
+                    backgroundColor: "rgba(0,0,0,0)",
+                    borderColor: "rgba(0,0,255,1)",
+                    lineTension: 0.3,
+                    borderWidth: 3
                 }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: '7日間のメモ数'
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            Max: 30,
+                            Min: 0,
+                            stepsize: 5,
+                        },
+                    }]
+                }
             }
-        }
-        });
+            });
+          });
         </script>
       </div>
     </div>
