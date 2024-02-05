@@ -42,6 +42,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    @tags = @post.tags.pluck(:name).join(',')
     tags = params[:post][:tag_name].split(',')
     if @post.update(post_params)
       @post.save_tag(tags)
