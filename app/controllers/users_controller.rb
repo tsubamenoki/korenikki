@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
   before_action :set_tags, only: [:edit, :confirm]
-  before_action :set_calendar, only: [:edit, :confirm]
+  before_action :set_calendar, only: [:edit, :update, :confirm]
 
 
   def edit
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image, :email, :password)
+    params.require(:user).permit(:name, :profile_image, :email)
   end
 
   def ensure_guest_user
